@@ -1,28 +1,136 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="center">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+      <div id="pageHeader" class>
+        <page-header v-bind:text="text"/>
+      </div>
+    <SideBarMenu @logout="logout()"/>
+    <router-link to="/hotelsBoard"></router-link>
+    <nav class="navbar shadow bg-blue rounded justify-content-between flex-nowrap flex-row fixed-top" style="height: 80px">
+      <div class="container">
+        <router-link to="/">
+          <a class="font navbar-brand float-left">
+            Hotel Management System
+          </a>
+        </router-link>
+      </div>
+      <div v-if="isLogin()" class="container">
+        <ul class="nav navbar-nav flex-row float-right">
+          <a type="button" class="font2 navbar-brand float-left" style="position: relative; left: 300%;" id="log-out" @click="logout">
+            <label id="logout" for="log-out">Logout</label>
+          </a>
+        </ul>
+      </div>
+    </nav>
+    <router-view />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import $ from "jquery"
+import SideBarMenu from "./components/SideBarMenu";
+// import Authorization from "./components/Authorization";
+// import Registration from "./components/Registration";
+import Link from "./components/Link";
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    // Authorization,
+    // Registration,
+    SideBarMenu
+  },
+  data() {
+    return {
+      items: [],
+      text: "",
+      authorized: Link.methods.checkTokenExp(),
+      auth: true
+    };
+  },
+  // mounted() {
+  //   this.resizing();
+  // },
+  // created() {
+  //   window.addEventListener("resize", this.resizing);
+  // },
+  methods: {
+    isLogin(){
+      return Link.methods.checkTokenExp();
+    },
+    logout() {
+      Link.methods.logout();
+      this.$router.push('/');
+    },
+    checkAuthorized() {
+      this.authorized = Link.methods.checkTokenExp()
+    },
+    changeAuthorizationRegistrationPage() {
+      this.auth = !this.auth;
+    },
+    // compare: function (a, b, order) {
+    //   let sign = order ? 1 : -1;
+    //
+    //   if (a == null && b == null) {
+    //     return -1 * sign;
+    //   }
+    //   if (a == null) {
+    //     return 1 * sign;
+    //   }
+    //   if (b == null) {
+    //     return -1 * sign;
+    //   }
+    //
+    //   if (isNaN(a) && isNaN(b)) {
+    //     if (a.toLowerCase() < b.toLowerCase()) {
+    //       return -1 * sign;
+    //     }
+    //     if (a.toLowerCase() > b.toLowerCase()) {
+    //       return 1 * sign;
+    //     }
+    //   } else {
+    //     if (a < b) {
+    //       return -1 * sign;
+    //     }
+    //     if (a > b) {
+    //       return 1 * sign;
+    //     }
+    //   }
+    //   return 0;
+    // },
+    // comparator: function (getter, order) {
+    //   return (a, b) => this.compare(getter(a), getter(b), order);
+    // },
+    // changeComponent(text) {
+    //   this.text = text;
+    // },
+    // resizing() {
+    //   if (this.authorized) {
+    //     var sideBar = $('#menuBar').find(".v-sidebar-menu")[0];
+    //     var btn = $('.v-sidebar-menu').find(".vsm--toggle-btn")[0];
+    //     if (window.innerWidth <= 960 && sideBar.classList.contains("vsm_expanded")) {
+    //       btn.click();
+    //       btn.style.display = "none";
+    //     } else if (window.innerWidth <= 960 && sideBar.classList.contains("vsm_collapsed")) {
+    //       btn.style.display = "none";
+    //     } else if (window.innerWidth >= 960 && sideBar.classList.contains("vsm_collapsed")) {
+    //       btn.style.display = "block";
+    //     }
+    //   }
+    // },
+    goToAuthorization() {
+      this.$router.push('/authorization')
+    },
+    goToRegistration() {
+      this.$router.push('/registration')
+    },
   }
 }
+
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import './assets/css/main.css';
 </style>
