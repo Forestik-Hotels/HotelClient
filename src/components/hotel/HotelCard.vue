@@ -1,10 +1,11 @@
 <template>
-  <div class="card notSelected" @click="singleHotel(hotel.id)">
+  <div class="card notSelected" @dblclick="singleHotel(hotel.id)">
     <span class="head">{{hotel.name}}</span>
     <table>
       <tr class="email" v-if="hotel.email!==null && hotel.email!==''">
         <td><i class="fa fa-envelope"></i></td>
         <td>{{hotel.email}}</td>
+        <td class="imgTd" rowspan="4"><img src="../../../public/hotel.png" style="width: 100px; height: 100px"></td>
       </tr>
       <tr v-if="hotel.address!==null && hotel.address!==''">
         <td><i class="fa fa-map-marker"></i></td>
@@ -39,12 +40,17 @@
     methods: {
       singleHotel: function (id) {
         window.scrollTo(0,0);
-        this.$router.push({name: 'wikiStegerById', params:{"id": id.toString()}});
+        this.$router.push('/hotel/' + id);
       },
     }
   }
 </script>
 
 <style scoped lang="scss">
-  //@import "../../../public/styles/HotelCard";
+  @import "src/assets/scss/HotelCard";
+
+  .imgTd {
+    width: 100px;
+    text-align: left;
+  }
 </style>

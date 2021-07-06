@@ -7,18 +7,9 @@
             <span class="name">{{ hotel.name }}</span>
           </div>
           <div class="hotel-tools">
-            <div class="fa fa-sign-out">
-              <span class="exporthint">{{"singleHotel.exportHint"}}</span>
+            <div v-if="isRoleAdmin()" class="fa fa-trash-o" @click="deleteHotel">
+              <span class="deletehint">Delete</span>
             </div>
-            <div class="fa fa-clone" @click="cloneHotel">
-              <span class="clonehint">{{"singleHotel.cloneHint"}}</span>
-            </div>
-            <div class="fa fa-trash-o" @click="deleteHotel">
-              <span class="deletehint">{{"singleHotel.deleteHint"}}</span>
-            </div>
-            <span class="line">|</span>
-            <span id="lable" class="data">{{"singleHotel.lastUpdate"}}: </span>
-            <span id="format" class="data">{{ moment(this.hotel.updated).format('MM.DD.YYYY') }}</span>
           </div>
         </div>
       <div class="container">
@@ -26,43 +17,41 @@
           <form autocomplete="off">
             <div class="input-field col">
               <input id="name" type="text" class="changeable" disabled v-model="hotel.name">
-              <label for="name" class="active">{{"singleHotel.name"}}</label>
-            </div>
-            <div class="input-field col">
-              <input id="createTime" type="text" disabled v-model="hotel.created">
-              <label for="createTime" class="active">{{"singleHotel.created"}}</label>
-            </div>
-            <div class="input-field col">
-              <input id="updateTime" type="text" disabled v-model="hotel.updated">
-              <label for="updateTime" class="active">{{"singleHotel.updated"}}</label>
-            </div>
-          </form>
-        </div>
-        <div class="body-r">
-          <form autocomplete="off">
-            <div class="input-field col">
-              <input id="firmName" type="text" class="changeable" disabled v-model="hotel.firmName">
-              <label for="firmName" class="active">{{"singleHotel.firmName"}}</label>
+              <label for="name" class="active">Name</label>
             </div>
             <div class="input-field col">
               <input id="address" type="text" class="changeable" disabled v-model="hotel.address">
-              <label for="address" class="active">{{"singleHotel.address"}}</label>
+              <label for="address" class="active">Address</label>
+            </div>
+            <div v-if="isRoleAdmin()">
+              <button @click="editArticleFields()" class="btn waves-effect waves-light" type="button" id="edit">
+                Edit
+                <i class="fa fa-pencil right"></i>
+              </button>
+              <button @click="editRequest()" class="btn light" type="button" id="submit-edit">Submit
+                <i class="fa fa-check right"></i>
+              </button>
+              <button @click="createRoom()" class="btn light" type="button" id="new-room">
+                new Room
+                <i class="fa fa-plus"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="body-l">
+          <form autocomplete="off">
+            <div class="input-field col">
+              <input id="count" type="text" class="changeable" disabled v-model="hotel.count">
+              <label for="count" class="active">Rooms</label>
             </div>
             <div class="input-field col">
               <input id="phone" type="text" class="changeable" disabled v-model="hotel.phone">
-              <label for="phone" class="active">{{"singleHotel.phone"}}</label>
+              <label for="phone" class="active">Phone</label>
             </div>
             <div class="input-field col">
               <input id="email" type="text" class="changeable" disabled v-model="hotel.email">
-              <label for="email" class="active">{{"singleHotel.email"}}</label>
+              <label for="email" class="active">Email</label>
             </div>
-            <button @click="editArticleFields()" class="btn waves-effect waves-light" type="button" id="edit">
-              {{"singleHotel.edit"}}
-              <i class="fa fa-pencil right"></i>
-            </button>
-            <button @click="editRequest()" class="btn waves-effect waves-light" type="button" id="submit-edit">{{"singleHotel.submit"}}
-              <i class="fa fa-check right"></i>
-            </button>
           </form>
         </div>
       </div>
@@ -78,8 +67,8 @@
   import Vue from "vue";
   import VueToast from "vue-toast-notification";
   import 'vue-toast-notification/dist/theme-default.css';
-  import Link from "../utills/Link";
-  import ArticleByHotelId from "../item/ArticleByHotelId";
+  import Link from "../Link";
+  import ArticleByHotelId from "../ArticleByHotelId";
   import VueConfirmDialog from "vue-confirm-dialog";
 
   Vue.use(VueConfirmDialog)
@@ -113,8 +102,6 @@
       getSingleHotel(id) {
         const headers = Link.methods.getHeaders();
         return axios.get(Link.methods.getHotelById(id), {headers}).then((res) => {
-          res.data.created = moment(res.data.created).format('MM.DD.YYYY');
-          res.data.updated = moment(res.data.updated).format('MM.DD.YYYY');
           this.hotel = res.data;
           return res;
         });
@@ -122,9 +109,11 @@
 
       sendArticleEditRequest() {
         const headers = Link.methods.getHeaders();
-        this.hotel.created = "";
-        this.hotel.updated = "";
         return axios.put(Link.methods.getHotelUpdate(), this.hotel, {headers});
+      },
+
+      createRoom() {
+        return this.$router.push("/addRoom?hotelName=" + this.hotel.name + "&id=" + this.hotel.id);
       },
 
       editArticleFields() {
@@ -144,21 +133,13 @@
       },
 
       backToHotelsList(){
-        return this.$router.push({name: 'wikiStegers'});
-      },
-
-      cloneHotel(){
-        let headers = Link.methods.getHeaders();
-        axios.get(Link.methods.getHotelById(this.id), {headers}).then(res => {
-          axios.post(Link.methods.getManufacturesCreateUrl(), res.data, {headers});
-        });
-        this.createToast(this.hotel.name + "singleHotel.cloneToast")
+        return this.$router.push("/hotelsBoard");
       },
 
       deleteHotel(){
         this.$confirm(
             {
-              message: "singleHotel.lastUpdate" + this.hotel.name + "?",
+              message: "Do you want to delete a hotel " + this.hotel.name + "?",
               button: {
                 no: 'No',
                 yes: 'Yes'
@@ -166,14 +147,16 @@
               callback: confirm => {
                 if (confirm) {
                   let headers = Link.methods.getHeaders();
-                  axios.delete(Link.methods.getHotelDeleteUrl() + this.id, {headers});
+                  axios.delete(Link.methods.getHotelDeleteUrl(this.id), {headers});
                   this.backToHotelsList();
                 }
               }
             }
         )
       },
-
+      isRoleAdmin() {
+        return Link.methods.parseJwt(Link.methods.getToken()).authorities[0] === 'ROLE_ADMIN';
+      },
 
       createToast(msg) {
         Vue.use(VueToast);
@@ -191,8 +174,8 @@
 
 
 <style scoped lang="scss">
-  @import '../../../public/materialize-src/sass/materialize.scss';
-  @import "../../../public/styles/hints";
+  //@import '../../../public/materialize-src/sass/materialize.scss';
+  //@import "../../../public/styles/hints";
 
   .box{
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
@@ -236,12 +219,20 @@
     grid-area: ab;
   }
 
+  label.active{
+    margin-left: 10px;
+  }
+
   .hotel-tools {
     text-align-last: right;
     float: right;
     margin-right: 36px;
     font-size: 18px;
     grid-area: ac;
+  }
+
+  div.input-field {
+    padding: 5px;
   }
 
   #hotelCard {
@@ -280,10 +271,14 @@
     display: none;
   }
 
+  #new-room {
+    width: 100%;
+  }
+
   button {
-    background: linear-gradient(180deg, #4D4D4D 23.44%, #717171 100%);
+    background: linear-gradient(180deg, #1b63e0 23.44%, #6c7897 100%);
     border-radius: 4px;
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 2px rgb(27, 99, 224);
     box-sizing: revert;
   }
 

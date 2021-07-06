@@ -32,5 +32,44 @@ export default new Router({
             path: '/hotelsBoard',
             component: () => import('./components/hotel/HotelsBoard.vue')
         },
+        {
+            path: '/addHotel',
+            component: () => import('./components/hotel/AddHotel.vue')
+        },
+        {
+            path: '/bookingList',
+            component: () => import('./components/BookingList.vue')
+        },
+        {
+            path: '/addRoom',
+            component: () => import('./components/AddRoom.vue'),
+            props: true
+        },
+        {
+            path: '/hotel/:id',
+            component: () => import('./components/hotel/SingleHotel.vue'),
+            props: true
+        },
+        {
+            path: '/roombooking/:id',
+            component: () => import('./components/RoomBooking.vue'),
+            props: true
+        },
+        {
+            path: '/room/hotel/:id',
+            component: () => import('./components/ItemList.vue'),
+            props: true
+        },
+        {
+            path: '/booking/:id',
+            component: () => import('./components/Booking.vue'),
+            props: true
+        },
+        {
+            path: '/room/:id',
+            component: () => import('./components/Room.vue'),
+            props: true
+        }
+
     ]
 })

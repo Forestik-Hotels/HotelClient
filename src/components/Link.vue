@@ -47,6 +47,66 @@ export default {
       return this.getUrl() + "/ownSecurity/signUp";
     },
 
+    getHotelById(id) {
+      return this.getUrl() + "/hotel/" + id;
+    },
+
+    getHotelUpdate() {
+      return this.getUrl() + "/hotel";
+    },
+
+    getRoomUpdate(id) {
+      return this.getUrl() + "/room/" + id;
+    },
+
+    getHotelsCreateUrl() {
+      return this.getUrl() + "/hotel";
+    },
+
+    getRoomCreateUrl() {
+      return this.getUrl() + "/room";
+    },
+
+    getHotelDeleteUrl(id) {
+      return this.getUrl() + "/hotel" + id;
+    },
+
+    getRoomDeleteUrl(id) {
+      return this.getUrl() + "/room" + id;
+    },
+
+    getRoomsByHotel(id) {
+      return this.getUrl() + "/room/hotel/" + id;
+    },
+
+    getRoomsById(id) {
+      return this.getUrl() + "/room/" + id;
+    },
+
+    getBookingById(id) {
+      return this.getUrl() + "/booking/" + id;
+    },
+
+    getConfirmById(id) {
+      return this.getUrl() + "/booking/confirm/" + id;
+    },
+
+    getRejectById(id) {
+      return this.getUrl() + "/booking/reject/" + id;
+    },
+
+    getCancelById(id) {
+      return this.getUrl() + "/booking/cancel/" + id;
+    },
+
+    getBookingUrl() {
+      return this.getUrl() + "/booking";
+    },
+
+    getBookingUrlAll() {
+      return this.getUrl() + "/booking/all";
+    },
+
     getHotelsUrl() {
       return this.getUrl() + "/hotel";
     },

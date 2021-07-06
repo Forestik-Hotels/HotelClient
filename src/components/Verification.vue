@@ -2,10 +2,6 @@
   <div class="form-container">
     <form>
       <div class="controllers">
-        <button type="button" id="sign-in" @click="sendVerificationRequest">
-          <i class="fa fa-check right"></i>
-          <label id="signIn" for="sign-in">Verification</label>
-        </button>
       </div>
     </form>
   </div>
@@ -22,15 +18,8 @@ import Link from "./Link";
 export default {
   name: "Verification",
   data() {
-    return {
-      request: {}
-    }
+    this.getVerify();
   },
-  // data() {
-  //   return {
-  //     request: {}
-  //   }
-  // },
   mounted(){
     window.scrollTo(0, 0)
   },
@@ -39,7 +28,6 @@ export default {
       const token = this.$route.query.token;
       const userId = this.$route.query.user_id;
       axios.get(Link.methods.getVerificationUrl()+`?token=${token}&user_id=${userId}`, this.request).then((res) => {
-        console.log(res);
         if(res.data===true){
           this.createToast("User verified", "success")
         }

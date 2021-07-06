@@ -41,7 +41,7 @@ export default {
       this.collapsed = !this.collapsed;
     },
     onItemClick(event, item) {
-      if (item.title === "navBar.logout") {
+      if (item.title === "logout") {
         window.localStorage.removeItem('token');
         window.localStorage.removeItem('id');
         this.$emit("logout");
@@ -61,7 +61,7 @@ export default {
           icon: 'fa fa-hotel'
         },
         {
-          href: '/tickets',
+          href: '/bookingList',
           title: "Booking",
           icon: 'fa fa-ticket'
         },
@@ -81,6 +81,7 @@ export default {
           icon: 'fa fa-vcard'
         },
         {
+          href: '/logout',
           title: 'logout',
           icon: 'fa fa-sign-out'
         },
@@ -268,5 +269,16 @@ export default {
 .v-sidebar-menu .vsm--scroll-wrapper {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+button {
+  background: linear-gradient(180deg, #1b63e0 23.44%, #6c7897 100%);
+  border-radius: 4px;
+  box-shadow: 0px 0px 2px rgb(27, 99, 224);
+  box-sizing: revert;
+}
+
+.menu {
+  top: 80px;
 }
 </style>

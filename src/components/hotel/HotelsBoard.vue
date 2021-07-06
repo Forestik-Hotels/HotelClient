@@ -32,7 +32,7 @@
       }
     },
     mounted() {
-      this.$emit("changeComponent", "hotelBoard.tableName");
+      this.$emit("changeComponent", "Hotel");
     },
     data() {
       let data = {
@@ -43,7 +43,7 @@
       })
       return {
         data,
-        table: "hotelBoard.table",
+        table: "Hotel",
         array: [],
         hidePanel: true,
         lastQuery: (x) => x
@@ -52,7 +52,6 @@
     methods: {
       getHotel() {
         const headers = Link.methods.getHeaders();
-        console.log(headers)
         return axios.get(Link.methods.getHotelsUrl(), {headers})
             .then(res => {
               return res.data;
@@ -94,5 +93,10 @@
 
   .board::-webkit-scrollbar{
     display: none;
+  }
+  #board {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
   }
 </style>

@@ -1,0 +1,44 @@
+.card {
+  width: 400px;
+  margin: 15px;
+  min-height: 135px;
+  max-height: 200px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+table{
+  margin-top: 10px;
+}
+
+i{
+  margin-left: 5px;
+}
+
+.fa{
+  color: #1b63e0;
+}
+
+.info {
+  font-family: BlogerSansNormal;
+}
+
+.firmName{
+  font-family: BlogerSans;
+}
+
+.head {
+  margin: 10px;
+  font-size: x-large;
+  font-family: BlogerSans;
+}
+
+.notSelected {
+  //background-image: url(../../../public/card.png);
+  background-position: center;
+  background-size: cover;
+}
+
+.imghotel {
+  float: right;
+}

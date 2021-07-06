@@ -1,5 +1,5 @@
 <template>
-  <div class="vue-tempalte">
+  <div class="vue-tempalte center" >
     <div class="content">
       <form autocomplete="off" @keyup.enter="sendTokenRequest">
         <h3>Sign In</h3>
@@ -16,7 +16,7 @@
           </label>
         </div>
         <div class="controllers">
-          <button type="button" class="btn btn-primary btn-lg" id="sign-in" @click="sendTokenRequest">
+          <button type="button" class="btn btn-primary btn-lg " id="sign-in" @click="sendTokenRequest">
             <label id="signIn" for="sign-in">Sign In</label>
           </button>
           <router-link to="/registration">
@@ -59,8 +59,7 @@ export default {
     },
     sendTokenRequest() {
       axios.post(Link.methods.getAuthenticationUrl(), this.request).then((res) => {
-        console.log(res);
-        window.localStorage.setItem('accessToken', `Bearer_` + res.data.accessToken);
+        window.localStorage.setItem('accessToken', `Bearer ` + res.data.accessToken);
         window.localStorage.setItem('refreshToken', res.data.refreshToken);
         window.localStorage.setItem('userId', res.data.userId);
         window.localStorage.setItem('userName', res.data.firstName);
@@ -84,9 +83,16 @@ export default {
 }
 </script>
 <style>
-/*@import '../assets/css/main.css';*/
+#sign-in, #sign-up {
+  box-sizing: revert;
+  align-items: center;
+  border: 1px;
+
+  width: 120px;
+  height: 43px;
+
+  background: linear-gradient(180deg, #1b63e0 23.44%, #405880 100%);
+  border-radius: 4px;
+  box-shadow: 0px 0px 2px rgb(27, 99, 224);
+}
 </style>
-<!--<style scoped lang="scss">-->
-<!--@import '../../public/materialize-src/sass/materialize.scss';-->
-<!--@import '../../public/styles/authorization_register.scss';-->
-<!--</style>-->

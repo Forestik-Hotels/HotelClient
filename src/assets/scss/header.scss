@@ -1,0 +1,105 @@
+@import "vars";
+
+.inline {
+  display: inline-block;
+  margin-top: 16px;
+}
+
+.newButton .fa-plus {
+  color: #FFFFFF;
+  padding: 0;
+}
+
+#header {
+  height: 72px;
+  background: #FFFFFF;
+  border-radius: 4px;
+}
+
+select {
+  margin-left: 29px;
+  padding-left: 16px;
+  width: 156px;
+  height: 40px;
+  display: inline-block;
+  border: 1px solid #9C9C9C;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: BlogerSans;
+}
+
+#search:focus {
+  border: 1px solid #EB2227;
+  outline: none;
+}
+
+#period:focus {
+  border: 1px solid #EB2227;
+  outline: none;
+}
+
+#search {
+  padding-left: 16px;
+  margin-left: 17px;
+  width: 280px;
+  height: 40px;
+  background: #FFFFFF;
+  border: 1px solid #9C9C9C;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+//.newButton, .filter, {
+//  margin-right: 18px;
+//  width: auto;
+//  height: 40px;
+//  align-items: first;
+//  border: 1px;
+//
+//  background: $second-color;
+//  border-radius: 4px;
+//  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+//}
+
+.filter{
+  width: 100px;
+}
+
+//.newButton:focus{
+//  outline: none;
+//}
+
+#showAllItems:focus{
+  outline: none;
+}
+
+.addLabel, #showLabel {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 23px;
+  color: #FFFFFF;
+}
+
+.space {
+  width: 1px;
+}
+
+.addDiv {
+  float: right;
+}
+
+@media screen and (max-width: 740px) {
+  #search {
+    width: 156px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #search {
+    width: 100px;
+  }
+  select {
+    width: 100px;
+  }
+}

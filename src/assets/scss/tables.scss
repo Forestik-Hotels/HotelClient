@@ -1,0 +1,214 @@
+@import 'vars.scss';
+
+#TableContainer {
+  background: #FFFFFF;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  margin-right: 18px;
+}
+
+#table {
+  display: block;
+  margin-left: 6px;
+  margin-right: 6px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+tr:nth-child(2n+1) {
+  background-color: #f9f9f9;
+}
+
+hr {
+  margin: 0 6px;
+  border: 1px solid #EBEBEB;
+}
+
+table {
+  text-align: center;
+  border-collapse: collapse;
+  width: 100%;
+
+}
+
+th, td {
+  border-bottom: 1px solid #EBEBEB !important;
+  align-content: center;
+}
+
+tr {
+  font-family: BlogerSansLight;
+}
+
+td {
+  line-height: 60px;
+}
+
+thead {
+  line-height: 58px;
+  padding: 0;
+}
+
+tr:hover {
+  background-color: #f0f0f0;
+}
+
+input[type=checkbox] {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+
+  background: #FFFFFF;
+
+  border: 2px solid #606060;
+  box-sizing: border-box;
+  border-radius: 4px;
+
+  margin-right: 12px;
+  margin-left: 12px;
+}
+
+.fa-sort-down {
+  vertical-align: top;
+}
+
+.parent {
+  min-width: max-content;
+  height: 50px;
+}
+
+.left, .right {
+  display: inline-block;
+}
+
+.right {
+  margin-top: 2px;
+  margin-left: 2px;
+  height: 58px;
+}
+
+.top, .bottom {
+  height: 20px;
+}
+
+.top {
+  vertical-align: bottom;
+}
+
+.bottom {
+  vertical-align: top;
+}
+
+.left {
+  vertical-align: top;
+}
+
+.active {
+  color: red;
+}
+
+.inactive {
+  color: #EBEBEB
+}
+
+td.imageThTd {
+  text-align: -webkit-center;
+}
+
+thead {
+  font-size: 18px;
+  color: white;
+  background-color: $second-color;
+}
+
+.imageTh {
+  text-align: -webkit-center;
+}
+
+.realImg, .imageDiv, .realBackgroundImg, .backgroundDiv {
+  width: 29px;
+  height: 58px;
+  z-index: 2;
+}
+
+.emptyImg {
+  width: 30px;
+  height: 30px;
+  vertical-align: text-bottom;
+}
+
+.backgroundDiv {
+  display: none;
+}
+
+.imageThTd:hover {
+  background: radial-gradient(rgba(0, 0, 0, 0.1), transparent);
+
+  .backgroundDiv {
+    display: block;
+  }
+
+  .imageDiv {
+    animation: scale 2000ms ease-in-out forwards;
+    display: block;
+    position: fixed;
+    background: whitesmoke;
+    border-radius: 2px;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.8);
+  }
+}
+.imageOnHover {
+  .realHoverImg{
+    height: 600px;
+    width: 300px;
+  }
+  .emptyHoverImg {
+    height: 300px;
+    width: 300px;
+    margin-top: 150px;
+  }
+  height: 600px;
+  width: 300px;
+  display: block;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  z-index: 2;
+  background: whitesmoke;
+  border-radius: 6px;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.8);
+
+  animation: pulse 1s;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+th {
+  top: 0;
+  background-color: $second-color;
+  padding: 0;
+  margin: 0;
+}
+
+table {
+  width: 100%;
+  text-align: center;
+}
+
+tbody::-webkit-scrollbar {
+  display: none;
+}
+
+th.date, td.data {
+  white-space: nowrap;
+}
+
+

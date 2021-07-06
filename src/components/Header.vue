@@ -6,13 +6,13 @@
     </div>
     <div class="space inline" ></div>
 
-    <div class="inline addDiv">
+    <div class="inline addDiv" v-if="isRoleAdmin()">
       <button class="filter" v-show="table === 'mainItem.table'" v-if="showButton()" type="button" @click="showAll()">
         <label id="showLabel" >{{this.buttonFilterTitle}}</label>
       </button>
-      <button class="newButton" type="button" @click="createSthNew()" style="position: relative; left: 400px">
-        <i class="fa fa-plus"></i>
-        <label class="addLabel" > {{"header.new"}} {{this.table}}</label>
+      <button class="newButton" id="create" type="button" @click="createSthNew()" style="position: relative; right: 400px; top: 30px">
+        <i class="fa fa-plus "></i>
+        <label class="addLabel" >  new {{this.table}}</label>
       </button>
     </div>
     <div v-show="table=== 'mainTicket.table'" class="inline addDiv">
@@ -43,8 +43,7 @@
 
 import SideBarMenu from "./SideBarMenu";
 import $ from "jquery"
-
-let headerPosition;
+import Link from "./Link";
 
 export default {
   components: {},
@@ -66,11 +65,11 @@ export default {
     }
   },
   mounted() {
-    $("#search").attr('placeholder', "header.search")
+    $("#search").attr('placeholder', "Search")
   },
   created() {
     switch (this.$route.path) {
-      case '/items': {
+      case '/hotel': {
         this.query = window.localStorage.getItem("itemFilter");
         if (this.query != null)
           this.sendQuery();
@@ -119,8 +118,8 @@ export default {
     createSthNew() {
       let filePath = this.$route.fullPath;
       switch (filePath) {
-        case ("/items"):
-          return this.$router.push({name: 'addArticle'});
+        case ("/hotelsBoard"):
+          return this.$router.push("/addHotel");
         case ("/wikiStegers"):
           return this.$router.push({name: 'newWikiStegers'});
         case("/tickets"):
@@ -184,78 +183,22 @@ export default {
       this.ticketFilter ? this.ticketFilterTitle = "header.ticketFilterTitleOn" : this.ticketFilterTitle = "header.ticketFilterTitleOff";
       this.$emit("changeDisplayed");
     },
-    changeLabel(counter, tableName) {
-      switch (tableName) {
-        case "item":
-          if (counter === 1)
-            $('.numOfSelected').text(counter + "controlPanel.singleItemSelected");
-          else
-            $('.numOfSelected').text(counter + "controlPanel.manyItemsSelected");
-          break;
-        case "ticket":
-          if (counter === 1)
-            $('.numOfSelected').text(counter + "controlPanel.singleTicketSelected");
-          else
-            $('.numOfSelected').text(counter + "controlPanel.manyTicketsSelected");
-          break;
-        case "user":
-          if (counter === 1)
-            $('.numOfSelected').text(counter + "controlPanel.singleUserSelected");
-          else
-            $('.numOfSelected').text(counter + "controlPanel.manyUsersSelected");
-          break;
-        case "ticketRule":
-          if (counter === 1)
-            $('.numOfSelected').text(counter + "controlPanel.singleTicketRuleSelected");
-          else
-            $('.numOfSelected').text(counter + "controlPanel.manyTicketRulesSelected");
-          break;
-        case 'historyLog':
-          if (counter === 1)
-            $('.numOfSelected').text(counter + "controlPanel.singleLogSelected");
-          else
-            $('.numOfSelected').text(counter + "controlPanel.manyLogsSelected");
-          break;
-      }
-    },
     deleteAll() {
       this.$emit('deleteAll')
     },
     cloneSelected() {
       this.$emit('cloneSelected')
     },
-    scrolling(){
-      let headerDiv = document.getElementById("header");
-      let header = $('#header');
-      let table = $('#table');
-      let components = $('#components');
-      let stickyCl = $('.sticky');
-
-      let sticky = headerDiv.offsetTop;
-      let padding = components.css('padding-left');
-
-      if(!headerDiv.classList.contains("sticky")){
-         headerPosition = sticky;
-      }
-
-      stickyCl.css('left', padding);
-      if (window.pageYOffset > sticky) {
-        header.addClass("sticky");
-        stickyCl.css('left', padding);
-        table.css('margin-top', '75px')
-      }
-      if(window.pageYOffset < headerPosition){
-        table.css('margin-top', '0px');
-        header.removeClass("sticky");
-      }
-    }
+    isRoleAdmin() {
+      return Link.methods.parseJwt(Link.methods.getToken()).authorities[0] === 'ROLE_ADMIN';
+    },
   }
 
 }
 </script>
 
 <style scoped lang="scss">
-//@import "../../public/styles/header.scss";
+@import "../../src/assets/scss/header.scss";
 //@import "../../public/styles/controlPanel.scss";
 //@import "../../public/styles/hints.scss";
 .sticky {
@@ -263,5 +206,17 @@ export default {
   top: 0;
   right: 0;
   left: 64px;
+}
+
+#create {
+  width: 100%;
+  box-sizing: revert;
+  height: 40px;
+  align-items: center;
+  border: 1px;
+
+  background: linear-gradient(180deg, #1b63e0 23.44%, #405880 100%);
+  border-radius: 4px;
+  box-shadow: 0px 0px 2px rgb(27, 99, 224);
 }
 </style>

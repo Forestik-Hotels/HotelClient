@@ -1,13 +1,15 @@
 <template>
-  <div id="app" class="center">
+  <div id="app" class="location">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-      <div id="pageHeader" class>
-        <page-header v-bind:text="text"/>
-      </div>
-    <SideBarMenu @logout="logout()"/>
+<!--      <div id="pageHeader" class>-->
+<!--        <page-header v-bind:text="text"/>-->
+<!--      </div>-->
+    <div v-if="isLogin()">
+      <SideBarMenu @logout="logout()"/>
+    </div>
     <router-link to="/hotelsBoard"></router-link>
-    <nav class="navbar shadow bg-blue rounded justify-content-between flex-nowrap flex-row fixed-top" style="height: 80px">
+    <nav class="navbar shadow bg-blue rounded justify-content-between flex-nowrap flex-row fixed-top header" style="height: 80px">
       <div class="container">
         <router-link to="/">
           <a class="font navbar-brand float-left">
@@ -28,7 +30,7 @@
 </template>
 
 <script>
-// import $ from "jquery"
+import $ from "jquery"
 import SideBarMenu from "./components/SideBarMenu";
 // import Authorization from "./components/Authorization";
 // import Registration from "./components/Registration";
@@ -50,12 +52,12 @@ export default {
       auth: true
     };
   },
-  // mounted() {
-  //   this.resizing();
-  // },
-  // created() {
-  //   window.addEventListener("resize", this.resizing);
-  // },
+  mounted() {
+    this.resizing();
+  },
+  created() {
+    window.addEventListener("resize", this.resizing);
+  },
   methods: {
     isLogin(){
       return Link.methods.checkTokenExp();
@@ -70,56 +72,56 @@ export default {
     changeAuthorizationRegistrationPage() {
       this.auth = !this.auth;
     },
-    // compare: function (a, b, order) {
-    //   let sign = order ? 1 : -1;
-    //
-    //   if (a == null && b == null) {
-    //     return -1 * sign;
-    //   }
-    //   if (a == null) {
-    //     return 1 * sign;
-    //   }
-    //   if (b == null) {
-    //     return -1 * sign;
-    //   }
-    //
-    //   if (isNaN(a) && isNaN(b)) {
-    //     if (a.toLowerCase() < b.toLowerCase()) {
-    //       return -1 * sign;
-    //     }
-    //     if (a.toLowerCase() > b.toLowerCase()) {
-    //       return 1 * sign;
-    //     }
-    //   } else {
-    //     if (a < b) {
-    //       return -1 * sign;
-    //     }
-    //     if (a > b) {
-    //       return 1 * sign;
-    //     }
-    //   }
-    //   return 0;
-    // },
-    // comparator: function (getter, order) {
-    //   return (a, b) => this.compare(getter(a), getter(b), order);
-    // },
-    // changeComponent(text) {
-    //   this.text = text;
-    // },
-    // resizing() {
-    //   if (this.authorized) {
-    //     var sideBar = $('#menuBar').find(".v-sidebar-menu")[0];
-    //     var btn = $('.v-sidebar-menu').find(".vsm--toggle-btn")[0];
-    //     if (window.innerWidth <= 960 && sideBar.classList.contains("vsm_expanded")) {
-    //       btn.click();
-    //       btn.style.display = "none";
-    //     } else if (window.innerWidth <= 960 && sideBar.classList.contains("vsm_collapsed")) {
-    //       btn.style.display = "none";
-    //     } else if (window.innerWidth >= 960 && sideBar.classList.contains("vsm_collapsed")) {
-    //       btn.style.display = "block";
-    //     }
-    //   }
-    // },
+    compare: function (a, b, order) {
+      let sign = order ? 1 : -1;
+
+      if (a == null && b == null) {
+        return -1 * sign;
+      }
+      if (a == null) {
+        return 1 * sign;
+      }
+      if (b == null) {
+        return -1 * sign;
+      }
+
+      if (isNaN(a) && isNaN(b)) {
+        if (a.toLowerCase() < b.toLowerCase()) {
+          return -1 * sign;
+        }
+        if (a.toLowerCase() > b.toLowerCase()) {
+          return 1 * sign;
+        }
+      } else {
+        if (a < b) {
+          return -1 * sign;
+        }
+        if (a > b) {
+          return 1 * sign;
+        }
+      }
+      return 0;
+    },
+    comparator: function (getter, order) {
+      return (a, b) => this.compare(getter(a), getter(b), order);
+    },
+    changeComponent(text) {
+      this.text = text;
+    },
+    resizing() {
+      if (this.authorized) {
+        var sideBar = $('#menuBar').find(".v-sidebar-menu")[0];
+        var btn = $('.v-sidebar-menu').find(".vsm--toggle-btn")[0];
+        if (window.innerWidth <= 960 && sideBar.classList.contains("vsm_expanded")) {
+          btn.click();
+          btn.style.display = "none";
+        } else if (window.innerWidth <= 960 && sideBar.classList.contains("vsm_collapsed")) {
+          btn.style.display = "none";
+        } else if (window.innerWidth >= 960 && sideBar.classList.contains("vsm_collapsed")) {
+          btn.style.display = "block";
+        }
+      }
+    },
     goToAuthorization() {
       this.$router.push('/authorization')
     },
@@ -133,4 +135,9 @@ export default {
 
 <style>
 @import './assets/css/main.css';
+
+.header {
+  background: linear-gradient(180deg, #1b63e0 23.44%, #405880 100%);
+  font-family: BlogerSans
+}
 </style>

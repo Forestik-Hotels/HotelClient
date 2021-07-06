@@ -1,36 +1,32 @@
 <template>
   <div class="container">
     <form autocomplete="off">
-      <h3>{{$t("addManufacturer.newWikiSteger")}}</h3>
+      <h3>Add new hotel</h3>
       <div class="input-field col">
         <i class="fa fa-suitcase prefix"></i>
-        <input id="name" type="text" v-model="manufacturer.name">
-        <label for="name" class="active">{{$t("addManufacturer.wikiSteger")}}</label>
-      </div>
-      <div class="input-field col">
-        <i class="fa fa-building prefix"></i>
-        <input id="firmName" type="text" v-model="manufacturer.firmName">
-        <label for="firmName" class="active">{{$t("addManufacturer.firmName")}}</label>
+        <input id="name" class="form-control form-control-lg" type="text" v-model="hotel.name" >
+        <label for="name" class="active">Name</label>
       </div>
       <div class="input-field col">
         <i class="fa fa-map-marker prefix"></i>
-        <input id="address" type="text" v-model="manufacturer.address">
-        <label for="address" class="active">{{$t("addManufacturer.address")}}</label>
+        <input id="address" class="form-control form-control-lg" type="text" v-model="hotel.address">
+        <label for="address" class="active">Address</label>
       </div>
       <div class="input-field col">
         <i class="fa fa-phone prefix"></i>
-        <input id="phone" type="text" v-model="manufacturer.phone">
-        <label for="phone" class="active">{{$t("addManufacturer.phone")}}</label>
+        <input id="phone" class="form-control form-control-lg" type="text" v-model="hotel.phone">
+        <label for="phone" class="active">Phone</label>
       </div>
       <div class="input-field col">
         <i class="fa fa-envelope prefix"></i>
-        <input id="email" type="text" v-model="manufacturer.email">
-        <label for="email" class="active">{{$t("addManufacturer.email")}}</label>
+        <input id="email" class="form-control form-control-lg" type="text" v-model="hotel.email">
+        <label for="email" class="active">Email</label>
       </div>
       <p></p>
       <div id="controller">
-        <button v-on:click="createManufacture" type="button" id="create" class="btn waves-effect waves-light">
-          {{$t("addManufacturer.create")}}<i class="fa fa-pencil right"></i></button>
+        <button v-on:click="createHotel" type="button" id="create" class="btn btn-primary btn-lg">
+          Create<i class="fa fa-pencil right"></i>
+        </button>
       </div>
     </form>
   </div>
@@ -42,34 +38,32 @@ import axios from "axios";
 import Vue from "vue";
 import VueToast from "vue-toast-notification";
 import 'vue-toast-notification/dist/theme-default.css';
-import Link from "../utills/Link";
+import Link from "../Link";
 
 export default {
 
   data() {
     let data = {
-      manufacturer: {}
+      hotel: {}
     };
 
     return data;
   },
 
   methods: {
-    createManufacture() {
+    createHotel() {
       const headers = Link.methods.getHeaders();
 
       new Promise((resolve) => {
-        axios.post(Link.methods.getManufacturesCreateUrl(), this.manufacturer, {headers}).then(() => {
-          this.createToast(this.manufacturer.name + this.$t("addManufacturer.createToast"))
+        axios.post(Link.methods.getHotelsCreateUrl(), this.hotel, {headers}).then(() => {
+          this.createToast(this.hotel.name + " create")
           resolve();
         });
       }).then(() => {
         if(!window.localStorage.getItem("savedItem"))
-          return this.$router.push({name: 'wikiStegers'});
+          return this.$router.push("/hotelsBoard");
         else return this.$router.push({name: 'addArticle'});
       })
-
-
     },
     createToast(msg) {
       Vue.use(VueToast);
@@ -85,7 +79,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../../../public/materialize-src/sass/materialize.scss';
+//@import '../../../public/materialize-src/sass/materialize.scss';
 @import "public/styles/vars.scss";
 
 div {
@@ -102,16 +96,16 @@ input {
 #create {
   width: 100%;
   box-sizing: revert;
-  height: 40px;
+  height: 43px;
   align-items: center;
   border: 1px;
 
-  background: $second-color;
+  background: linear-gradient(180deg, #1b63e0 23.44%, #405880 100%);
   border-radius: 4px;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 2px rgb(27, 99, 224);
 }
 
 .container {
-  width: 300px;
+  width: 400px;
 }
 </style>

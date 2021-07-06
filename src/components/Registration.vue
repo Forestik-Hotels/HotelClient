@@ -1,5 +1,5 @@
 <template>
-  <div class="form-container" @keyup.enter="sendCreateRequest">
+  <div class="form-container center" @keyup.enter="sendCreateRequest">
     <form autocomplete="off">
       <div class="input-field col">
         <i class="fa fa-user-o prefix"></i>
@@ -22,9 +22,9 @@
         <label for="password" class="active">Password <i class="fa fa-eye right" @click="showPassword"></i></label>
       </div>
       <div class="controllers">
-        <button type="button" class="btn btn-primary btn-lg" id="back-button" @click="goToAuthorization">
+        <button type="button"  class="btn btn-primary btn-lg" id="back-btn" @click="goToAuthorization">
 <!--          <i class="fa fa-check right"></i>-->
-          <label id="back" for="back">Sing In</label>
+          <label id="back" for="back-btn">Sing In</label>
         </button>
         <button type="button" class="btn position btn-primary btn-lg" id="sign-up-register" @click="sendCreateRequest">
 <!--          <i class="fa fa-pencil right"></i>-->
@@ -64,7 +64,7 @@ export default {
     sendCreateRequest() {
       const headers = Link.methods.getHeaders();
       axios.post(Link.methods.getUsersCreateUrl(), this.request, {headers}).then(() => {
-        this.createToast("User created", "success")
+        this.createToast("User created. Please check your email address to verify your identity", "success")
         this.goToAuthorization();
       }).catch(() => {
         this.createToast("Fields are filled incorrectly", "error");
@@ -86,7 +86,18 @@ export default {
 }
 </script>
 
-<!--<style scoped lang="scss">-->
-<!--@import '../../public/materialize-src/sass/materialize.scss';-->
-<!--@import '../../public/styles/authorization_register.scss';-->
-<!--</style>-->
+<style>
+
+#back-btn, #sign-up-register {
+  box-sizing: revert;
+  align-items: center;
+  border: 1px;
+
+  width: 120px;
+  height: 43px;
+
+  background: linear-gradient(180deg, #1b63e0 23.44%, #405880 100%);
+  border-radius: 4px;
+  box-shadow: 0px 0px 2px rgb(27, 99, 224);
+}
+</style>
