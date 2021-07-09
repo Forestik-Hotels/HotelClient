@@ -11,7 +11,7 @@
         <label id="showLabel" >{{this.buttonFilterTitle}}</label>
       </button>
       <button class="newButton" id="create" type="button" @click="createSthNew()" style="position: relative; right: 400px; top: 30px">
-        <i class="fa fa-plus "></i>
+        <em class="fa fa-plus "></em>
         <label class="addLabel" >  new {{this.table}}</label>
       </button>
     </div>

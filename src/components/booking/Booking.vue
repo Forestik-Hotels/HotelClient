@@ -3,14 +3,14 @@
     <form autocomplete="off">
       <h3>Booking</h3>
       <div class="input-field col">
-        <i class="fa fa-calendar prefix"></i>
+        <em class="fa fa-calendar prefix"></em>
         <input type="date" id="start" name="trip-start"
                value="2021-01-01"
                min="2021-01-01" max="2050-12-31" v-model="booking.dateFrom">
         <label for="start" class="active">Date from</label>
       </div>
       <div class="input-field col">
-        <i class="fa fa-calendar prefix"></i>
+        <em class="fa fa-calendar prefix"></em>
         <input type="date" id="end" name="trip-start"
                value="2021-01-01"
                min="2021-01-01" max="2050-12-31" v-model="booking.dateTo">
@@ -18,7 +18,7 @@
       </div>
       <div id="controller">
         <button v-on:click="bookRoom()" type="button" id="create" class="btn btn-primary btn-lg">
-          Booking<i class="fa fa-pencil right"></i>
+          Booking<em class="fa fa-pencil right"></em>
         </button>
       </div>
     </form>

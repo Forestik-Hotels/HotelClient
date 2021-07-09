@@ -15,13 +15,13 @@
             <div v-if="isRoleAdmin()">
               <button @click="confirm()" class="btn light" type="button" id="confirm">
                 Confirm
-                <i class="fa fa-check right"></i>
+                <em class="fa fa-check right"></em>
               </button>
             </div>
             <div v-else>
               <button @click="сancel()" class="btn light" type="button" id="сancel">
                 Cancel
-                <i class="fa fa-check right"></i>
+                <em class="fa fa-check right"></em>
               </button>
             </div>
           </form>
@@ -49,12 +49,12 @@
     <form autocomplete="off">
       <div class="container" style="position: relative; width: 100%; padding: 10px; left: 40px">
       <div class="input-field col">
-        <i class="fa fa-calendar prefix"></i>
+        <em class="fa fa-calendar prefix"></em>
         <input id="dateFrom" type="text" class="changeable" disabled v-model="booking.dateFrom">
         <label for="count" class="active">Date from</label>
       </div>
       <div class="input-field col">
-        <i class="fa fa-calendar prefix"></i>
+        <em class="fa fa-calendar prefix"></em>
         <input id="dateTo" type="text" class="changeable" disabled v-model="booking.dateTo">
         <label for="phone" class="active">Date to</label>
       </div>
@@ -68,16 +68,13 @@
 </template>
 
 <script>
-// import $ from 'jquery'
 import axios from "axios";
 import Vue from "vue";
 import VueToast from "vue-toast-notification";
 import Link from "../navigation/Link";
-// import Booking from "./Booking";
 
 export default {
   name: "RoomBooking",
-  // components: {Booking},
   data() {
     return {
       room: {

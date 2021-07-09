@@ -4,15 +4,15 @@
       <form autocomplete="off" @keyup.enter="sendTokenRequest">
         <h3>Sign In</h3>
         <div class="form-group">
-          <i class="fa fa-user-circle-o prefix"></i>
+          <em class="fa fa-user-circle-o prefix"></em>
           <input id="email" class="form-control form-control-lg" type="text" v-model="request.email">
           <label for="email" class="active">Email</label>
         </div>
         <div class="form-group" onfocus="">
-          <i class="fa fa-lock prefix"></i>
+          <em class="fa fa-lock prefix"></em>
           <input id="password" class="form-control form-control-lg" type="password" v-model="request.password">
           <label for="password" class="active">Password
-            <i class="fa fa-eye right" @click=showPassword></i>
+            <em class="fa fa-eye right" @click=showPassword></em>
           </label>
         </div>
         <div class="controllers">
