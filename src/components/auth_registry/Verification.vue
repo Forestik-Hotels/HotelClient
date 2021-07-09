@@ -12,7 +12,7 @@ import axios from "axios";
 import Vue from "vue";
 import VueToast from "vue-toast-notification";
 import 'vue-toast-notification/dist/theme-default.css';
-import Link from "./Link";
+import Link from "../navigation/Link";
 
 
 export default {

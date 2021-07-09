@@ -29,7 +29,7 @@
 import axios from "axios";
 import Vue from "vue";
 import VueToast from "vue-toast-notification";
-import Link from "./Link";
+import Link from "../navigation/Link";
 export default {
   name: "Booking",
   data() {

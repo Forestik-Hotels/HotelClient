@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './components/Home'
+import Home from './components/navigation/Home'
 
 Vue.use(Router)
 
@@ -18,15 +18,15 @@ export default new Router({
         {
             path: '/verifyEmail',
             // component: Home
-            component: () => import('./components/Verification.vue')
+            component: () => import('./components/auth_registry/Verification.vue')
         },
         {
             path: '/registration',
-            component: () => import('./components/Registration.vue')
+            component: () => import('./components/auth_registry/Registration.vue')
         },
         {
             path: '/authorization',
-            component: () => import('./components/Authorization.vue')
+            component: () => import('./components/auth_registry/Authorization.vue')
         },
         {
             path: '/hotelsBoard',
@@ -38,11 +38,11 @@ export default new Router({
         },
         {
             path: '/bookingList',
-            component: () => import('./components/BookingList.vue')
+            component: () => import('./components/booking/BookingList.vue')
         },
         {
             path: '/addRoom',
-            component: () => import('./components/AddRoom.vue'),
+            component: () => import('./components/room/AddRoom.vue'),
             props: true
         },
         {
@@ -52,22 +52,22 @@ export default new Router({
         },
         {
             path: '/roombooking/:id',
-            component: () => import('./components/RoomBooking.vue'),
+            component: () => import('./components/room/RoomBooking.vue'),
             props: true
         },
         {
             path: '/room/hotel/:id',
-            component: () => import('./components/ItemList.vue'),
+            component: () => import('./components/room/ItemList.vue'),
             props: true
         },
         {
             path: '/booking/:id',
-            component: () => import('./components/Booking.vue'),
+            component: () => import('./components/booking/Booking.vue'),
             props: true
         },
         {
             path: '/room/:id',
-            component: () => import('./components/Room.vue'),
+            component: () => import('./components/room/Room.vue'),
             props: true
         }
 

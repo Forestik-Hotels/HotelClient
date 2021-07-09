@@ -61,7 +61,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "src/assets/scss/HotelCard";
+@import "../../assets/scss/HotelCard";
 
 .imgTd {
   width: 100px;

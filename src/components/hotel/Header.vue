@@ -41,9 +41,9 @@
 
 <script>
 
-import SideBarMenu from "./SideBarMenu";
+import SideBarMenu from "../navigation/SideBarMenu";
 import $ from "jquery"
-import Link from "./Link";
+import Link from "../navigation/Link";
 
 export default {
   components: {},
@@ -198,7 +198,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../src/assets/scss/header.scss";
+@import "../../assets/scss/header";
 //@import "../../public/styles/controlPanel.scss";
 //@import "../../public/styles/hints.scss";
 .sticky {

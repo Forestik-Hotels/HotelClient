@@ -72,7 +72,7 @@
 import axios from "axios";
 import Vue from "vue";
 import VueToast from "vue-toast-notification";
-import Link from "./Link";
+import Link from "../navigation/Link";
 // import Booking from "./Booking";
 
 export default {

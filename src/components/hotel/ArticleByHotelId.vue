@@ -20,9 +20,9 @@
 <script>
 
 import axios from "axios";
-import ItemList from "../components/ItemList";
+import ItemList from "../room/ItemList";
 // import Header from "../components/Header";
-import Link from "../components/Link";
+import Link from "../navigation/Link";
 import VueConfirmDialog from "vue-confirm-dialog";
 import Vue from "vue";
 
@@ -30,7 +30,7 @@ Vue.use(VueConfirmDialog)
 Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
 // import App from "../App";
 import $ from "jquery";
-import SideBarMenu from "../components/SideBarMenu";
+import SideBarMenu from "../navigation/SideBarMenu";
 
 let counter = 0;
 let sbCounter = 0;

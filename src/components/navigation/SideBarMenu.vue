@@ -139,8 +139,8 @@ export default {
 <style lang="scss">
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600');
-@import "../../node_modules/vue-sidebar-menu/src/scss/vue-sidebar-menu.scss";
-@import "../../public/styles/vars.scss";
+@import "../../../node_modules/vue-sidebar-menu/src/scss/vue-sidebar-menu";
+@import "../../../public/styles/vars";
 
 
 #components.collapsed-components {

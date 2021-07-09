@@ -37,8 +37,8 @@
 <script>
 
 import moment from 'moment';
-import SideBarMenu from "../components/SideBarMenu";
-import Link from "./Link";
+import SideBarMenu from "../navigation/SideBarMenu";
+import Link from "../navigation/Link";
 export default {
   props: {
     item: {
@@ -122,7 +122,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../assets/scss/tables.scss";
+@import "../../assets/scss/tables";
 
 .imageThTd:hover {
   background: radial-gradient(rgba(0, 0, 0, 0.1), transparent);

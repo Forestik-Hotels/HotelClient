@@ -44,9 +44,9 @@ import axios from "axios";
 import Vue from "vue";
 import VueToast from "vue-toast-notification";
 import 'vue-toast-notification/dist/theme-default.css';
-import Link from "./Link";
+import Link from "../navigation/Link";
 import GoogleLogin from 'vue-google-login';
-import {environment} from "../environment/environment";
+import {environment} from "../../environment/environment";
 
 export default {
   name: "registration",

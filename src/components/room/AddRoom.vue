@@ -49,7 +49,7 @@ import Vue from "vue";
 import VueToast from "vue-toast-notification";
 import 'vue-toast-notification/dist/theme-default.css';
 import axios from "axios";
-import Link from "./Link";
+import Link from "../navigation/Link";
 export default {
   name: "AddRoom",
   props: {
@@ -116,7 +116,7 @@ export default {
 </script>
 
 <style  scoped lang="scss">
-@import "public/styles/vars.scss";
+@import "../../../public/styles/vars";
 
 div {
 }

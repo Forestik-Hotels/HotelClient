@@ -57,8 +57,8 @@ import $ from 'jquery'
 import axios from "axios";
 import Vue from "vue";
 import VueToast from "vue-toast-notification";
-import Link from "./Link";
-import Booking from "./Booking";
+import Link from "../navigation/Link";
+import Booking from "../booking/Booking";
 export default {
   name: "Room",
   components: {Booking},
