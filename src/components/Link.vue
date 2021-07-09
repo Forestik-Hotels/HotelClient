@@ -1,4 +1,6 @@
 <script>
+import {environment} from "../environment/environment";
+
 export default {
   methods: {
     checkTokenExp() {
@@ -32,7 +34,11 @@ export default {
     },
 
     getUrl() {
-      return "http://localhost:8070";
+      return environment.backendLink;
+    },
+
+    getAuthGoogleUrl(id) {
+      return this.getUrl() + "/googleSecurity/" + id;
     },
 
     getAuthenticationUrl() {

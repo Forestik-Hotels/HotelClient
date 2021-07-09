@@ -1,5 +1,5 @@
 <template>
-  <div class="vue-tempalte center" >
+  <div class="vue-tempalte center">
     <div class="content">
       <form autocomplete="off" @keyup.enter="sendTokenRequest">
         <h3>Sign In</h3>
@@ -20,10 +20,16 @@
             <label id="signIn" for="sign-in">Sign In</label>
           </button>
           <router-link to="/registration">
-          <button type="button" class="position btn btn-primary btn-lg" id="sign-up">
-            <label id="signUp" for="sign-up">Sign Up</label>
-          </button>
-          </router-link >
+            <button type="button" class="position btn btn-primary btn-lg" id="sign-up">
+              <label id="signUp" for="sign-up">Sign Up</label>
+            </button>
+          </router-link>
+          <GoogleLogin style=" position: relative; top: 20px"
+                       :params="params"
+                       :renderParams="renderParams"
+                       :onSuccess="onSuccess"
+                       :onFailure="onFailure">
+          </GoogleLogin>
         </div>
       </form>
     </div>
@@ -37,18 +43,49 @@ import VueToast from "vue-toast-notification";
 import 'vue-toast-notification/dist/theme-default.css';
 import Link from "./Link";
 import 'bootstrap/dist/css/bootstrap.min.css'
+import GoogleLogin from 'vue-google-login';
+import {environment} from "../environment/environment";
 
 export default {
   name: "Authorization",
+  components: {
+    GoogleLogin
+  },
   data() {
     return {
+      params: {
+        client_id: environment.googleClientId
+      },
+      renderParams: {
+        width: 250,
+        height: 50,
+        longtitle: true
+      },
       request: {}
     }
   },
-  mounted(){
+  mounted() {
     window.scrollTo(0, 0)
   },
   methods: {
+    onSuccess(googleUser) {
+      const token = googleUser.getAuthResponse().id_token;
+      axios.get(Link.methods.getAuthGoogleUrl(token)).then((response) => {
+        window.localStorage.setItem('accessToken', `Bearer ` + response.data.accessToken);
+        window.localStorage.setItem('refreshToken', response.data.refreshToken);
+        window.localStorage.setItem('userId', response.data.userId);
+        window.localStorage.setItem('userName', response.data.firstName);
+        if (Link.methods.checkTokenExp()) {
+          this.$router.push('/hotelsBoard')
+        }
+      })
+    },
+
+    onFailure (error) {
+      console.log(error)
+      this.createToast(error, "error");
+    },
+
     showPassword() {
       let raw = document.getElementById("password");
       if (raw.type === "password") {
@@ -63,7 +100,7 @@ export default {
         window.localStorage.setItem('refreshToken', res.data.refreshToken);
         window.localStorage.setItem('userId', res.data.userId);
         window.localStorage.setItem('userName', res.data.firstName);
-        if(Link.methods.checkTokenExp()){
+        if (Link.methods.checkTokenExp()) {
           this.$router.push('/hotelsBoard')
         }
       }).catch(() => {

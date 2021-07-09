@@ -23,13 +23,17 @@
       </div>
       <div class="controllers">
         <button type="button"  class="btn btn-primary btn-lg" id="back-btn" @click="goToAuthorization">
-<!--          <i class="fa fa-check right"></i>-->
           <label id="back" for="back-btn">Sing In</label>
         </button>
         <button type="button" class="btn position btn-primary btn-lg" id="sign-up-register" @click="sendCreateRequest">
-<!--          <i class="fa fa-pencil right"></i>-->
           <label id="signUp" for="sign-up-register">Sign Up</label>
         </button>
+        <GoogleLogin style=" position: relative; top: 20px"
+                     :params="params"
+                     :renderParams="renderParams"
+                     :onSuccess="onSuccess"
+                     :onFailure="onFailure">
+        </GoogleLogin>
       </div>
     </form>
   </div>
@@ -41,11 +45,24 @@ import Vue from "vue";
 import VueToast from "vue-toast-notification";
 import 'vue-toast-notification/dist/theme-default.css';
 import Link from "./Link";
+import GoogleLogin from 'vue-google-login';
+import {environment} from "../environment/environment";
 
 export default {
   name: "registration",
+  components: {
+    GoogleLogin
+  },
   data() {
     return {
+      params: {
+        client_id: environment.googleClientId
+      },
+      renderParams: {
+        width: 250,
+        height: 50,
+        longtitle: true
+      },
       request: {}
     }
   },
@@ -53,6 +70,26 @@ export default {
     window.scrollTo(0, 0)
   },
   methods: {
+    onSuccess(googleUser) {
+      const token = googleUser.getAuthResponse().id_token;
+      axios.get(Link.methods.getAuthGoogleUrl(token)).then((response) => {
+        window.localStorage.setItem('accessToken', `Bearer ` + response.data.accessToken);
+        window.localStorage.setItem('refreshToken', response.data.refreshToken);
+        window.localStorage.setItem('userId', response.data.userId);
+        window.localStorage.setItem('userName', response.data.firstName);
+
+        if (Link.methods.checkTokenExp()) {
+          this.$router.push('/hotelsBoard')
+        }
+      })
+    },
+
+    onFailure (error) {
+      // `error` contains any error occurred.
+      console.log(error)
+      this.createToast(error, "error");
+    },
+
     showPassword() {
       let raw = document.getElementById("password");
       if (raw.type === "password") {
