@@ -6,7 +6,6 @@
         <td><em class="fa fa-calendar"></em></td>
         <td class="info">{{ moment(booking.dateFrom).format('DD/MM/YYYY HH:MM') }}</td>
         <td class="imgTd" rowspan="4">
-          <!--          <img src="../../../public/hotel.png" style="width: 100px; height: 100px">-->
         </td>
       </tr>
       <tr v-if="booking.dateTo!==null && booking.dateTo!==''">

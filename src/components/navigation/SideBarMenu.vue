@@ -115,7 +115,7 @@ export default {
     }
   },
   data() {
-    let data = {
+    return {
       menu: this.setMenu(),
       themes: [
         {
@@ -129,9 +129,7 @@ export default {
       ],
       isOnMobile: false,
       collapsed: false
-    }
-
-    return data;
+    };
   }
 }
 </script>

@@ -49,17 +49,16 @@ import VueToast from "vue-toast-notification";
 import 'vue-toast-notification/dist/theme-default.css';
 import axios from "axios";
 import Link from "../navigation/Link";
+
 export default {
   name: "AddRoom",
   props: {
     hotel: {}
   },
   data() {
-    let data = {
+    return {
       room: {},
     };
-
-    return data;
   },
   methods: {
 
@@ -116,13 +115,6 @@ export default {
 
 <style  scoped lang="scss">
 @import "../../../public/styles/vars";
-
-div {
-}
-
-input {
-
-}
 
 #controller {
   text-align-last: center;

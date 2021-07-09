@@ -19,10 +19,9 @@ import bookingCard from "./BookingCard";
 import Link from "../navigation/Link";
 import Header from "../hotel/Header";
 import axios from "axios";
-import BookingCard from "./BookingCard";
 export default {
   name: "BookingList",
-  components: {BookingCard},
+  components: {bookingCard},
   comments: {
     bookingCard,
     Header
