@@ -106,7 +106,7 @@ export default {
           this.$router.push('/hotelsBoard')
         }
       }).catch( error=> {
-        this.createToast(error.response.data[0].message, "info");
+        this.createToast(error.response.data[0].message, "warning");
       });
     },
     createToast(msg, type) {

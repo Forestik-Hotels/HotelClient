@@ -106,7 +106,7 @@ export default {
         this.createToast("User created. Please check your email address to verify your identity", "success")
         this.goToAuthorization();
       }).catch( error=> {
-        this.createToast(error.response.data[0].message, "info");
+        this.createToast(error.response.data[0].message, "warning");
       });
     },
     goToAuthorization() {
