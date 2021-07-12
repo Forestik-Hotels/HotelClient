@@ -81,7 +81,9 @@ export default {
         if (Link.methods.checkTokenExp()) {
           this.$router.push('/hotelsBoard')
         }
-      })
+      }).catch(error => {
+        this.createToast(error.response.data.message, "error");
+      });
     },
 
     onFailure (error) {
@@ -103,8 +105,8 @@ export default {
       axios.post(Link.methods.getUsersCreateUrl(), this.request, {headers}).then(() => {
         this.createToast("User created. Please check your email address to verify your identity", "success")
         this.goToAuthorization();
-      }).catch(() => {
-        this.createToast("Fields are filled incorrectly", "error");
+      }).catch( error=> {
+        this.createToast(error.response.data[0].message, "info");
       });
     },
     goToAuthorization() {

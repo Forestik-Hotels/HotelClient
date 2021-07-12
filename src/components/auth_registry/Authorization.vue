@@ -78,7 +78,9 @@ export default {
         if (Link.methods.checkTokenExp()) {
           this.$router.push('/hotelsBoard')
         }
-      })
+      }).catch(error => {
+      this.createToast(error.response.data.message, "error");
+    });
     },
 
     onFailure (error) {
@@ -103,8 +105,8 @@ export default {
         if (Link.methods.checkTokenExp()) {
           this.$router.push('/hotelsBoard')
         }
-      }).catch(() => {
-        this.createToast("Fields are filled incorrectly", "error");
+      }).catch( error=> {
+        this.createToast(error.response.data[0].message, "info");
       });
     },
     createToast(msg, type) {
