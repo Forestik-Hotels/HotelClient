@@ -24,8 +24,6 @@ export default {
       window.localStorage.removeItem('refreshToken');
       window.localStorage.removeItem('userId');
       window.localStorage.removeItem('userName');
-      console.log(window.localStorage.getItem('googleAuth'));
-      console.log(window.localStorage.getItem('googleAuth')==='true');
       if(window.localStorage.getItem('googleAuth')==='true'){
         window.gapi.auth2.getAuthInstance().signOut();
         window.localStorage.removeItem('googleAuth');
