@@ -31,10 +31,8 @@
 
 <script>
 import $ from "jquery"
-import SideBarMenu from "./components/SideBarMenu";
-// import Authorization from "./components/Authorization";
-// import Registration from "./components/Registration";
-import Link from "./components/Link";
+import SideBarMenu from "./components/navigation/SideBarMenu";
+import Link from "./components/navigation/Link";
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 export default {

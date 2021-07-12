@@ -16,8 +16,8 @@
 
 <script>
   import hotelCard from "./HotelCard";
-  import Link from "../Link";
-  import Header from "../Header";
+  import Link from "../navigation/Link";
+  import Header from "./Header";
   import axios from "axios";
 
   export default {

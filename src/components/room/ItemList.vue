@@ -72,11 +72,11 @@
   </table>
 </template>
 <script>
-import SoloItem from "../components/SoloItem";
-import App from "../App";
+import SoloItem from "./SoloItem";
+import App from "../../App";
 import $ from "jquery";
-import SideBarMenu from "../components/SideBarMenu";
-import Link from "./Link";
+import SideBarMenu from "../navigation/SideBarMenu";
+import Link from "../navigation/Link";
 
 export default {
   props: {
@@ -208,5 +208,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../assets/scss/tables.scss";
+@import "../../assets/scss/tables";
 </style>

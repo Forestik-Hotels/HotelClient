@@ -13,6 +13,8 @@
     "moment": "^2.29.1",
     "vue": "^2.6.12",
     "vue-confirm-dialog": "^1.0.2",
+    "vue-google-login": "^2.0.5",
+    "vue-google-signin-button": "^1.0.4",
     "vue-router": "^3.5.1",
     "vue-sidebar-menu": "^4.7.4",
     "vue-toast-notification": "^0.6.1"
@@ -28,6 +30,7 @@
     "jquery": "^3.6.0",
     "sass": "^1.32.8",
     "sass-loader": "^10.1.1",
+    "vue-google-auth": "^1.0.5",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {

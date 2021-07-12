@@ -3,29 +3,28 @@
     <form autocomplete="off">
       <h3>Add new room</h3>
       <div class="input-field col">
-        <i class="fa fa-suitcase prefix"></i>
+        <em class="fa fa-suitcase prefix"></em>
         <input id="name" class="form-control form-control-lg" type="text" v-model="room.name" >
         <label for="name" class="active">Name</label>
       </div>
       <div class="input-field col">
-        <i class="fa fa-map-marker prefix"></i>
+        <em class="fa fa-map-marker prefix"></em>
         <input id="address" class="form-control form-control-lg" type="text" v-model="room.pricePerDay">
         <label for="address" class="active">Price per day
         </label>
       </div>
       <div class="input-field col">
-        <i class="fa fa-phone prefix"></i>
+        <em class="fa fa-phone prefix"></em>
         <select id="phone" class="form-control form-control-lg" type="checkbox" v-model="room.roomStatus">
           <option disabled value="">Room status</option>
           <option>FREE</option>
           <option>RESERVED</option>
           <option>INHABITED</option>
           <option>BOOKING</option>
-<!--        <label for="phone" class="active">Room status</label>-->
         </select>
       </div>
       <div class="input-field col">
-        <i class="fa fa-envelope prefix"></i>
+        <em class="fa fa-envelope prefix"></em>
         <select id="email" class="form-control form-control-lg" type="text" v-model="room.type">
           <option disabled value="">Room type</option>
           <option>LUX</option>
@@ -49,18 +48,17 @@ import Vue from "vue";
 import VueToast from "vue-toast-notification";
 import 'vue-toast-notification/dist/theme-default.css';
 import axios from "axios";
-import Link from "./Link";
+import Link from "../navigation/Link";
+
 export default {
   name: "AddRoom",
   props: {
     hotel: {}
   },
   data() {
-    let data = {
+    return {
       room: {},
     };
-
-    return data;
   },
   methods: {
 
@@ -116,14 +114,7 @@ export default {
 </script>
 
 <style  scoped lang="scss">
-@import "public/styles/vars.scss";
-
-div {
-}
-
-input {
-
-}
+@import "../../../public/styles/vars";
 
 #controller {
   text-align-last: center;

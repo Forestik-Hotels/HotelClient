@@ -11,24 +11,22 @@
     <td style="text-alighn: center" class="type" @click="goToSingleArticle(item.id)" colspan="">{{ item.type }}</td>
 
     <td style="text-alighn: center" class="dataTd" @dblclick="goToSingleArticle(item.id)">{{ moment(item.updated).format('MM/DD/YYYY hh:mm') }}</td>
-<!--    <td v-if="ifBooking() && !isRoleAdmin()" class="type">-->
     <td style="text-alighn: center" v-if="isRoleAdmin()" class="type">
       <button @click="goToBooking(item.id)" class="btn waves-effect waves-light" type="button" id="delete">
         Delete
-        <i class="fa fa-bookmark right"></i>
+        <em class="fa fa-bookmark right"></em>
       </button>
     </td>
     <td style="text-alighn: center" v-if="!isRoleAdmin()" class="type">
       <button @click="goToBooking(item.id)" class="btn waves-effect waves-light" type="button" id="booking">
         Booking
-        <i class="fa fa-bookmark right"></i>
+        <em class="fa fa-bookmark right"></em>
       </button>
     </td>
-<!--    <td v-if="ifBooking()" class="type">-->
     <td style="text-alighn: center" class="type">
       <button @click="goToRoom(item.id)" class="btn light" type="button" id="room">
         Room
-        <i class="fa fa-hotel right"></i>
+        <em class="fa fa-hotel right"></em>
       </button>
     </td>
   </tr>
@@ -37,8 +35,8 @@
 <script>
 
 import moment from 'moment';
-import SideBarMenu from "../components/SideBarMenu";
-import Link from "./Link";
+import SideBarMenu from "../navigation/SideBarMenu";
+import Link from "../navigation/Link";
 export default {
   props: {
     item: {
@@ -122,7 +120,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../assets/scss/tables.scss";
+@import "../../assets/scss/tables";
 
 .imageThTd:hover {
   background: radial-gradient(rgba(0, 0, 0, 0.1), transparent);

@@ -26,10 +26,10 @@
             <div v-if="isRoleAdmin()">
               <button @click="editArticleFields()" class="btn waves-effect waves-light" type="button" id="edit">
                 Edit
-                <i class="fa fa-pencil right"></i>
+                <em class="fa fa-pencil right"></em>
               </button>
               <button @click="editRequest()" class="btn light" type="button" id="submit-edit">Submit
-                <i class="fa fa-check right"></i>
+                <em class="fa fa-check right"></em>
               </button>
             </div>
           </form>
@@ -57,8 +57,8 @@ import $ from 'jquery'
 import axios from "axios";
 import Vue from "vue";
 import VueToast from "vue-toast-notification";
-import Link from "./Link";
-import Booking from "./Booking";
+import Link from "../navigation/Link";
+import Booking from "../booking/Booking";
 export default {
   name: "Room",
   components: {Booking},

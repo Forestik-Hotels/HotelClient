@@ -1,12 +1,5 @@
 <template>
   <div id="TableContainer">
-<!--    <div>-->
-<!--      <Header @search="search"-->
-<!--              v-bind:table="table"-->
-<!--              v-bind:hidePanel="hidePanel"-->
-<!--              @deleteAll="deleteRooms"-->
-<!--              ref="counter" />-->
-<!--    </div>-->
     <vue-confirm-dialog></vue-confirm-dialog>
     <div id="table">
       <ItemList
@@ -20,17 +13,15 @@
 <script>
 
 import axios from "axios";
-import ItemList from "../components/ItemList";
-// import Header from "../components/Header";
-import Link from "../components/Link";
+import ItemList from "../room/ItemList";
+import Link from "../navigation/Link";
 import VueConfirmDialog from "vue-confirm-dialog";
 import Vue from "vue";
 
 Vue.use(VueConfirmDialog)
 Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
-// import App from "../App";
 import $ from "jquery";
-import SideBarMenu from "../components/SideBarMenu";
+import SideBarMenu from "../navigation/SideBarMenu";
 
 let counter = 0;
 let sbCounter = 0;
@@ -39,7 +30,6 @@ let tableHeaderPosition;
 export default {
   components: {
     ItemList: ItemList,
-    // Header: Header,
   },
 
   data() {
@@ -51,15 +41,6 @@ export default {
       lastQuery: (x) => x
     };
   },
-  // computed: {
-  //   changedItems: function () {
-  //     let field = window.localStorage.getItem(this.$route.path + " field");
-  //     let orderBy = window.localStorage.getItem(this.$route.path + " orderBy")==='true';
-  //     if(field==='manufacturer.name')
-  //       return this.items.filter(x=> this.filterByStatus(x)).filter(x => this.lastQuery(x, this.isInclude)).sort(App.methods.comparator(a => a.manufacturer.name, orderBy));
-  //     else return this.items.filter(x=> this.filterByStatus(x)).filter(x => this.lastQuery(x, this.isInclude)).sort(App.methods.comparator(a => a[field], orderBy));
-  //   }
-  // },
   created() {
     window.addEventListener("scroll", this.scrolling);
     window.addEventListener('resize', this.windowResize);
