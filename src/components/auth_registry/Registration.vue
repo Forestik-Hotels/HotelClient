@@ -77,6 +77,7 @@ export default {
         window.localStorage.setItem('refreshToken', response.data.refreshToken);
         window.localStorage.setItem('userId', response.data.userId);
         window.localStorage.setItem('userName', response.data.firstName);
+        window.localStorage.setItem('googleAuth', `true`);
 
         if (Link.methods.checkTokenExp()) {
           this.$router.push('/hotelsBoard')

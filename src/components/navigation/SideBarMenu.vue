@@ -42,8 +42,7 @@ export default {
     },
     onItemClick(event, item) {
       if (item.title === "logout") {
-        window.localStorage.removeItem('token');
-        window.localStorage.removeItem('id');
+        Link.methods.logout();
         this.$emit("logout");
       }
     },
@@ -101,13 +100,9 @@ export default {
               title: "Users",
             },
             {
-              href: '/ticketRules',
-              title: "navBar.ticketRules",
-            },
-            {
               href: '/historyLogs',
-              title: "navBar.historyLogs"
-            }
+              title: "navBar.historyLogs",
+            },
           ]
         });
       }

@@ -1,10 +1,6 @@
 <template>
   <div id="app" class="location">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<!--      <div id="pageHeader" class>-->
-<!--        <page-header v-bind:text="text"/>-->
-<!--      </div>-->
     <div v-if="isLogin()">
       <SideBarMenu @logout="logout()"/>
     </div>
@@ -38,8 +34,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 export default {
   name: 'App',
   components: {
-    // Authorization,
-    // Registration,
     SideBarMenu
   },
   data() {
