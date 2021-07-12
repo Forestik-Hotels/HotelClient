@@ -44,7 +44,7 @@ import 'vue-toast-notification/dist/theme-default.css';
 import Link from "../navigation/Link";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import GoogleLogin from 'vue-google-login';
-import {environment} from "../../environment/environment";
+import {environment} from "../../../environment/environment";
 
 export default {
   name: "Authorization",
