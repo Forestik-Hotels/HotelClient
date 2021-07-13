@@ -15,15 +15,15 @@
 </template>
 
 <script>
-import bookingCard from "./BookingCard";
+import BookingCard from "./BookingCard";
 import Link from "../navigation/Link";
 import Header from "../hotel/Header";
 import axios from "axios";
 export default {
   name: "BookingList",
-  components: {bookingCard},
+  components: {BookingCard},
   comments: {
-    bookingCard,
+    BookingCard,
     Header
   },
   computed: {

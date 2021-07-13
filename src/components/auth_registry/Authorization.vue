@@ -1,5 +1,5 @@
 <template>
-  <div class="vue-tempalte center">
+  <div class="center">
     <div class="content">
       <form autocomplete="off" @keyup.enter="sendTokenRequest">
         <h3>Sign In</h3>
@@ -134,5 +134,10 @@ export default {
   background: linear-gradient(180deg, #1b63e0 23.44%, #405880 100%);
   border-radius: 4px;
   box-shadow: 0px 0px 2px rgb(27, 99, 224);
+}
+
+.center {
+  margin: auto;
+  width: 30%
 }
 </style>
