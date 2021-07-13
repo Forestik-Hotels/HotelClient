@@ -4,7 +4,7 @@
       <div class="body">
         <form>
           <div class="imageDiv">
-            <img :src="user.profilePicturePath" class="imgTd">
+            <img :src="user.profilePicturePath" class="imgTd" alt="Profile picture">
           </div>
           <div class="input-field col-3">
             <input id="count" type="text" class="box" disabled v-model="user.firstName">
