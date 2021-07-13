@@ -1,5 +1,5 @@
 <template>
-  <div class="form-container center" @keyup.enter="sendCreateRequest">
+  <div class="center" @keyup.enter="sendCreateRequest">
     <form autocomplete="off">
       <div class="input-field col">
         <em class="fa fa-user-o prefix"></em>
@@ -139,5 +139,10 @@ export default {
   background: linear-gradient(180deg, #1b63e0 23.44%, #405880 100%);
   border-radius: 4px;
   box-shadow: 0px 0px 2px rgb(27, 99, 224);
+}
+
+.center {
+  margin: auto;
+  width: 30%
 }
 </style>

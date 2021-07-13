@@ -41,6 +41,10 @@ export default new Router({
             component: () => import('./components/booking/BookingList.vue')
         },
         {
+            path: '/profile',
+            component: () => import('./components/profile/Profile.vue')
+        },
+        {
             path: '/addRoom',
             component: () => import('./components/room/AddRoom.vue'),
             props: true

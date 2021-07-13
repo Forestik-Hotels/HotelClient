@@ -65,11 +65,6 @@ export default {
           icon: 'fa fa-ticket'
         },
         {
-          href: '/wikiStegers',
-          title: "Order",
-          icon: 'fa fa-briefcase'
-        },
-        {
           href: '/payment',
           title: "Payment",
           icon: 'fa fa-qrcode'

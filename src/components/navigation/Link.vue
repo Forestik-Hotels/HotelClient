@@ -65,6 +65,14 @@ export default {
       return this.getUrl() + "/hotel/" + id;
     },
 
+    getUserData(id) {
+      return this.getUrl() + "/user/info/" + id;
+    },
+
+    getUserDataUpdate() {
+      return this.getUrl() + "/user/info";
+    },
+
     getHotelUpdate() {
       return this.getUrl() + "/hotel";
     },
@@ -82,7 +90,7 @@ export default {
     },
 
     getHotelDeleteUrl(id) {
-      return this.getUrl() + "/hotel" + id;
+      return this.getUrl() + "/hotel/" + id;
     },
 
     getRoomDeleteUrl(id) {
