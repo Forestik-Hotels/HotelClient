@@ -77,6 +77,10 @@ export default {
       return this.getUrl() + "/user";
     },
 
+    getDeactivateUser(id) {
+      return this.getUrl() + "/user/deactivate/" + id;
+    },
+
     getSendEmail() {
       return this.getUrl() + "/mail"
     },

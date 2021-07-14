@@ -46,8 +46,6 @@ export default {
   methods: {
     sendLetter() {
       this.letter.email = this.user.email;
-      const concat = this.user.firstName.concat(' ', this.user.lastName);
-      console.log(concat);
       this.letter.userName = this.user.firstName.concat(' ', this.user.lastName);
       const headers = Link.methods.getHeaders();
       new Promise((resolve) => {
@@ -82,7 +80,6 @@ textarea.title {
 textarea.text {
   min-height: 135px;
   max-height: 735px;
-  //min-width: 870px;
   max-width: 1770px;
 }
 

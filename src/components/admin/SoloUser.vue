@@ -1,24 +1,30 @@
 <template>
   <tr>
-    <td style="text-alighn: center" v-if="isRoleAdmin()" class="checkboxTd">
+    <td style="text-align: center" v-if="isRoleAdmin()" class="checkboxTd">
       <input id="checkbox" class="checkbox" type="checkbox" @change="countEvent()" ref="checkbox"
              :disabled="user.status === 'DELETED'">
     </td>
-    <td style="text-alighn: center" class="idTd" @click="goToSingleArticle(user.id)">{{ user.id }}</td>
-    <td style="text-alighn: center" class="firstName" @click="goToSingleArticle(user.id)">{{ user.firstName }}</td>
-    <td style="text-alighn: center" class="lastName" @click="goToSingleArticle(user.id)" colspan="">{{
+    <td style="text-align: center" class="idTd" @click="goToSingleArticle(user.id)">{{ user.id }}</td>
+    <td style="text-align: center" class="firstName" @click="goToSingleArticle(user.id)">{{ user.firstName }}</td>
+    <td style="text-align: center" class="lastName" @click="goToSingleArticle(user.id)" colspan="">{{
         user.lastName
       }}</td>
-    <td style="text-alighn: center" class="email" @click="goToSingleArticle(user.id)" colspan="">{{
+    <td style="text-align: center" class="email" @click="goToSingleArticle(user.id)" colspan="">{{
         user.email
       }}</td>
-    <td style="text-alighn: center" class="phoneNumber"  @click="goToSingleArticle(user.id)">{{ user.phoneNumber }}</td>
-    <td style="text-alighn: center" class="role" @click="goToSingleArticle(user.id)" colspan="">{{ user.role }}</td>
-    <td style="text-alighn: center" class="dateOfRegistration" @click="goToSingleArticle(user.id)" colspan="">{{ moment(user.dateOfRegistration).format('MM/DD/YYYY hh:mm')}}</td>
-    <td style="text-alighn: center" class="type">
-      <button @click="goToUser(user.id)" class="btn light" type="button" id="room">
+    <td style="text-align: center" class="phoneNumber"  @click="goToSingleArticle(user.id)">{{ user.phoneNumber }}</td>
+    <td style="text-align: center" class="role" @click="goToSingleArticle(user.id)" colspan="">{{ user.role }}</td>
+    <td style="text-align: center" class="dateOfRegistration" @click="goToSingleArticle(user.id)" colspan="">{{ moment(user.dateOfRegistration).format('MM/DD/YYYY hh:mm')}}</td>
+    <td style="text-align: center" class="type">
+      <button @click="deactivate(user.id)" class="btn light" type="button" id="deactivate">
+        Deactivate
+        <em class="fas fa-user-slash"></em>
+      </button>
+    </td>
+    <td style="text-align: center" class="type">
+      <button @click="goToUser(user.id)" class="btn light" type="button" id="user">
         Write
-        <em class="fa fa-file-text right"></em>
+        <em class="fa fa-file-text"></em>
       </button>
     </td>
   </tr>
@@ -29,6 +35,7 @@
 import moment from 'moment';
 import SideBarMenu from "../navigation/SideBarMenu";
 import Link from "../navigation/Link";
+import axios from "axios";
 export default {
   props: {
     user: {
@@ -83,6 +90,13 @@ export default {
     },
     moment,
 
+    deactivate: function(id){
+      const headers = Link.methods.getHeaders();
+      axios.post(Link.methods.getDeactivateUser(id), null, {headers})
+          .then(() => {
+          });
+    },
+
     ifBooking() {
       !this.isRoleAdmin()
       return (this.user.roomStatus!=='BOOKING' && this.user.roomStatus!=='RESERVED' && this.user.roomStatus!=='INHABITED') || this.isRoleAdmin()
@@ -126,7 +140,7 @@ export default {
   }
 }
 
-#booking, #room, #delete {
+#user, #deactivate {
   width: 100%;
   box-sizing: revert;
   height: 43px;

@@ -1,8 +1,8 @@
 <template>
   <table>
-    <thead id="theadItem" style="text-alighn: center" >
-      <th v-if="isRoleAdmin()" class="checkbox"><input type="checkbox" id="titleCheckbox" @change="checkAll" style="text-alighn: center" ></th>
-      <th v-if="isRoleAdmin()" class="id" @click="sortByField('id')" style="text-alighn: center" >
+    <thead id="theadItem" style="text-align: center" >
+      <th v-if="isRoleAdmin()" class="checkbox"><input type="checkbox" id="titleCheckbox" @change="checkAll" style="text-align: center" ></th>
+      <th v-if="isRoleAdmin()" class="id" @click="sortByField('id')" style="text-align: center" >
         <div class="parent">
           <div class="left">
             Id
@@ -11,52 +11,52 @@
           </div>
         </div>
       </th>
-      <th class="Name" @click="sortByField('name')" style="text-alighn: center" >
+      <th class="Name" @click="sortByField('name')" style="text-align: center" >
         <div class="parent">
           <div class="left">
             Name
           </div>
         </div>
       </th>
-      <th class="pricePerDay" style="text-alighn: center" >
+      <th class="pricePerDay" style="text-align: center" >
         <div class="parent">
           <div class="left">
              Price per day
           </div>
         </div>
       </th>
-      <th class="roomStatus" style="text-alighn: center" >
+      <th class="roomStatus" style="text-align: center" >
         <div class="parent">
           <div class="left">
             Room status
           </div>
         </div>
       </th>
-      <th class="type" style="text-alighn: center" >
+      <th class="type" style="text-align: center" >
         <div class="parent">
           <div class="left">
             Type
           </div>
         </div>
       </th>
-      <th class="data" @click="sortByField('updated')" style="text-alighn: center" >
+      <th class="data" @click="sortByField('updated')" style="text-align: center" >
         <div class="parent">
           <div class="left">
             Update
           </div>
         </div>
       </th>
-      <th v-if="!isRoleAdmin()" class="data" @click="sortByField('updated')" style="text-alighn: center" >
+      <th v-if="!isRoleAdmin()" class="data" @click="sortByField('updated')" style="text-align: center" >
           <div class="left">
             Booking
           </div>
       </th>
-      <th v-else class="data" @click="sortByField('updated')" style="text-alighn: center" >
+      <th v-else class="data" @click="sortByField('updated')" style="text-align: center" >
         <div class="left">
           Delete
         </div>
       </th>
-      <th class="data" @click="sortByField('updated')" style="text-alighn: center" >
+      <th class="data" @click="sortByField('updated')" style="text-align: center" >
         <div class="left">
           More info
         </div>

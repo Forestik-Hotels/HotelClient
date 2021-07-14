@@ -1,29 +1,29 @@
 <template>
   <tr>
-    <td style="text-alighn: center" v-if="isRoleAdmin()" class="checkboxTd">
+    <td style="text-align: center" v-if="isRoleAdmin()" class="checkboxTd">
       <input id="checkbox" class="checkbox" type="checkbox" @change="countEvent()" ref="checkbox"
              :disabled="item.status === 'DELETED'">
     </td>
-    <td style="text-alighn: center" v-if="isRoleAdmin()" class="idTd" @click="goToSingleArticle(item.id)">{{ item.id }}</td>
-    <td style="text-alighn: center" class="name" @click="goToSingleArticle(item.id)">{{ item.name }}</td>
-    <td style="text-alighn: center" class="pricePerDay" @click="goToSingleArticle(item.id)" colspan="">{{ item.pricePerDay }}</td>
-    <td style="text-alighn: center" class="roomStatus" @click="goToSingleArticle(item.id)" colspan="">{{ item.roomStatus }}</td>
-    <td style="text-alighn: center" class="type" @click="goToSingleArticle(item.id)" colspan="">{{ item.type }}</td>
+    <td style="text-align: center" v-if="isRoleAdmin()" class="idTd" @click="goToSingleArticle(item.id)">{{ item.id }}</td>
+    <td style="text-align: center" class="name" @click="goToSingleArticle(item.id)">{{ item.name }}</td>
+    <td style="text-align: center" class="pricePerDay" @click="goToSingleArticle(item.id)" colspan="">{{ item.pricePerDay }}</td>
+    <td style="text-align: center" class="roomStatus" @click="goToSingleArticle(item.id)" colspan="">{{ item.roomStatus }}</td>
+    <td style="text-align: center" class="type" @click="goToSingleArticle(item.id)" colspan="">{{ item.type }}</td>
 
-    <td style="text-alighn: center" class="dataTd" @dblclick="goToSingleArticle(item.id)">{{ moment(item.updated).format('MM/DD/YYYY hh:mm') }}</td>
-    <td style="text-alighn: center" v-if="isRoleAdmin()" class="type">
+    <td style="text-align: center" class="dataTd" @dblclick="goToSingleArticle(item.id)">{{ moment(item.updated).format('MM/DD/YYYY hh:mm') }}</td>
+    <td style="text-align: center" v-if="isRoleAdmin()" class="type">
       <button @click="goToBooking(item.id)" class="btn waves-effect waves-light" type="button" id="delete">
         Delete
         <em class="fa fa-bookmark right"></em>
       </button>
     </td>
-    <td style="text-alighn: center" v-if="!isRoleAdmin()" class="type">
+    <td style="text-align: center" v-if="!isRoleAdmin()" class="type">
       <button @click="goToBooking(item.id)" class="btn waves-effect waves-light" type="button" id="booking">
         Booking
         <em class="fa fa-bookmark right"></em>
       </button>
     </td>
-    <td style="text-alighn: center" class="type">
+    <td style="text-align: center" class="type">
       <button @click="goToRoom(item.id)" class="btn light" type="button" id="room">
         Room
         <em class="fa fa-hotel right"></em>
