@@ -14,7 +14,7 @@
       </div>
       <div id="controller">
         <button v-on:click="sendLetter" type="button" id="send" class="btn btn-primary btn-lg">
-          Send<i class="fas fa-pencil-alt right"></i>
+          Send<em class="fas fa-pencil-alt right"></em>
         </button>
       </div>
     </form>
@@ -48,13 +48,10 @@ export default {
       this.letter.email = this.user.email;
       this.letter.userName = this.user.firstName.concat(' ', this.user.lastName);
       const headers = Link.methods.getHeaders();
-      new Promise((resolve) => {
         axios.post(Link.methods.getSendEmail(), this.letter, {headers})
             .then(() => {
               this.createToast("Email sent")
-              resolve();
             });
-      })
     },
     createToast(msg) {
       Vue.use(VueToast);

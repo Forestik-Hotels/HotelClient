@@ -1,5 +1,5 @@
 <template>
-  <table>
+  <table id ="userList">
     <thead id="theadItem" style="text-align: center" >
     <th id="checkbox" v-if="isRoleAdmin()" class="checkbox"><input type="checkbox" id="titleCheckbox" @change="checkAll" style="text-align: center" ></th>
     <th id="id" v-if="isRoleAdmin()" class="id" @click="sortByField('id')" style="text-align: center" >

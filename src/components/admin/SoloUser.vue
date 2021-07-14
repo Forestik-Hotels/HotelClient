@@ -1,6 +1,6 @@
 <template>
   <tr>
-    <td style="text-align: center" v-if="isRoleAdmin()" class="checkboxTd">
+    <td style="text-align: center" class="checkboxTd">
       <input id="checkbox" class="checkbox" type="checkbox" @change="countEvent()" ref="checkbox"
              :disabled="user.status === 'DELETED'">
     </td>
@@ -95,15 +95,6 @@ export default {
       axios.post(Link.methods.getDeactivateUser(id), null, {headers})
           .then(() => {
           });
-    },
-
-    ifBooking() {
-      !this.isRoleAdmin()
-      return (this.user.roomStatus!=='BOOKING' && this.user.roomStatus!=='RESERVED' && this.user.roomStatus!=='INHABITED') || this.isRoleAdmin()
-    },
-
-    isRoleAdmin() {
-      return Link.methods.parseJwt(Link.methods.getToken()).authorities[0] === 'ROLE_ADMIN';
     },
 
     countEvent() {

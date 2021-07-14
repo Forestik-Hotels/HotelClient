@@ -212,7 +212,4 @@ function alignColumns() {
 </script>
 <style scoped lang="scss">
 @import "../../assets/scss/tables";
-ItemList.tbody{
-  overflow: visible;
-}
 </style>
