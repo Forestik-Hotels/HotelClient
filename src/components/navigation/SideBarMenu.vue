@@ -62,7 +62,7 @@ export default {
         {
           href: '/bookingList',
           title: "Booking",
-          icon: 'fa fa-ticket'
+          icon: 'fas fa-book'
         },
         {
           href: '/payment',
@@ -82,7 +82,7 @@ export default {
       ];
       if (this.isRoleAdmin()) {
         menu.splice(1, 0, {
-          href: '/dashboard',
+          href: '/userList',
           title: 'AdminPage',
           icon: 'fa fa-th'
         });

@@ -73,6 +73,14 @@ export default {
       return this.getUrl() + "/user/info";
     },
 
+    getAllUser() {
+      return this.getUrl() + "/user";
+    },
+
+    getSendEmail() {
+      return this.getUrl() + "/mail"
+    },
+
     getHotelUpdate() {
       return this.getUrl() + "/hotel";
     },

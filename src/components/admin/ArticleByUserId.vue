@@ -2,10 +2,10 @@
   <div id="TableContainer">
     <vue-confirm-dialog></vue-confirm-dialog>
     <div id="table">
-      <ItemList
-              v-bind:items="this.items"
-              @setHeaderVisible="setHeaderVisible"
-              @setPanelVisible="setPanelVisible"
+      <UserList
+          v-bind:users="this.users"
+          @setHeaderVisible="setHeaderVisible"
+          @setPanelVisible="setPanelVisible"
       />
     </div>
   </div>
@@ -13,7 +13,6 @@
 <script>
 
 import axios from "axios";
-import ItemList from "../room/ItemList";
 import Link from "../navigation/Link";
 import VueConfirmDialog from "vue-confirm-dialog";
 import Vue from "vue";
@@ -22,6 +21,7 @@ Vue.use(VueConfirmDialog)
 Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
 import $ from "jquery";
 import SideBarMenu from "../navigation/SideBarMenu";
+import UserList from "./UserList";
 
 let counter = 0;
 let sbCounter = 0;
@@ -29,12 +29,12 @@ let tableHeaderPosition;
 
 export default {
   components: {
-    ItemList: ItemList,
+    UserList: UserList,
   },
 
   data() {
     return {
-      items: [],
+      users: [],
       table: "articleByManufacturerId.table",
       hidePanel: true,
       array: [],
@@ -56,9 +56,9 @@ export default {
   methods: {
     getRoomsByHotelId() {
       const headers = Link.methods.getHeaders();
-      axios.get(Link.methods.getRoomsByHotel(this.$route.params.id), {headers})
+      axios.get(Link.methods.getAllUser(), {headers})
           .then(res => {
-            this.items = res.data;
+            this.users = res.data;
           });
     },
     search(qsearch) {
@@ -133,7 +133,7 @@ export default {
       return true;
     },
     windowResize(){
-        alignColumns();
+      alignColumns();
     },
     scrolling(){
       let sideBar = $('#menuBar').find(".v-sidebar-menu")[0];
@@ -165,7 +165,7 @@ export default {
 
       if (window.pageYOffset > sticky) {
         if(counter < 1) {
-            alignColumns();
+          alignColumns();
         }
         header.addClass("stickyItem");
         table.css('padding-top', '60px');
@@ -211,8 +211,8 @@ function alignColumns() {
 }
 </script>
 <style scoped lang="scss">
- @import "../../assets/scss/tables";
-  ItemList.tbody{
-    overflow: visible;
-  }
+@import "../../assets/scss/tables";
+ItemList.tbody{
+  overflow: visible;
+}
 </style>

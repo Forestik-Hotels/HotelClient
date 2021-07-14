@@ -20,8 +20,8 @@
               <label for="name" class="active">Name</label>
             </div>
             <div class="input-field col">
-              <input id="address" type="text" class="changeable" disabled v-model="room.pricePerDay">
-              <label for="address" class="active">Price per day</label>
+              <input id="pricePerDay" type="text" class="changeable" disabled v-model="room.pricePerDay">
+              <label for="pricePerDay" class="active">Price per day</label>
             </div>
             <div v-if="isRoleAdmin()">
               <button @click="editArticleFields()" class="btn waves-effect waves-light" type="button" id="edit">
@@ -37,12 +37,12 @@
         <div class="body-l">
           <form autocomplete="off">
             <div class="input-field col">
-              <input id="count" type="text" class="changeable" disabled v-model="room.roomStatus">
-              <label for="count" class="active">Room status</label>
+              <input id="roomStatus" type="text" class="changeable" disabled v-model="room.roomStatus">
+              <label for="roomStatus" class="active">Room status</label>
             </div>
             <div class="input-field col">
-              <input id="phone" type="text" class="changeable" disabled v-model="room.type">
-              <label for="phone" class="active">Type</label>
+              <input id="type" type="text" class="changeable" disabled v-model="room.type">
+              <label for="type" class="active">Type</label>
             </div>
           </form>
         </div>
@@ -110,13 +110,6 @@ export default {
       console.log(this.room);
       return axios.put(Link.methods.getRoomUpdate(this.room.id), this.room, {headers});
     },
-    // getSingleRoom(id) {
-    //   const headers = Link.methods.getHeaders();
-    //   return axios.get(Link.methods.getRoomsById(id), {headers}).then((res) => {
-    //     this.room = res.data;
-    //     return res;
-    //   });
-    // },
     editArticleFields() {
       $('#upload-img').css('display', 'block');
       $('.changeable').prop('disabled', false);
