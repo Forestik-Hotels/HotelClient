@@ -93,8 +93,7 @@ export default {
     deactivate: function(id){
       const headers = Link.methods.getHeaders();
       axios.post(Link.methods.getDeactivateUser(id), null, {headers})
-          .then(() => {
-          });
+          .then();
     },
 
     countEvent() {
