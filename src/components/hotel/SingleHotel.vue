@@ -26,7 +26,7 @@
             <div v-if="isRoleAdmin()">
               <button @click="editArticleFields()" class="btn waves-effect waves-light" type="button" id="edit">
                 Edit
-                <i class="fa fa-pencil right"></i>
+                <i class="fa fa-pencil-alt right"></i>
               </button>
               <button @click="editRequest()" class="btn light" type="button" id="submit-edit">Submit
                 <i class="fa fa-check right"></i>

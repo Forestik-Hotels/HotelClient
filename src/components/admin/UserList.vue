@@ -1,110 +1,92 @@
 <template>
-  <table>
+  <table id ="userList">
     <thead id="theadItem" style="text-align: center" >
-      <th v-if="isRoleAdmin()" class="checkbox"><input type="checkbox" id="titleCheckbox" @change="checkAll" style="text-align: center" ></th>
-      <th v-if="isRoleAdmin()" class="id" @click="sortByField('id')" style="text-align: center" >
-        <div class="parent">
-          <div class="left">
-            Id
-          </div>
-          <div class="right">
-          </div>
-        </div>
-      </th>
-      <th class="Name" @click="sortByField('name')" style="text-align: center" >
-        <div class="parent">
-          <div class="left">
-            Name
-          </div>
-        </div>
-      </th>
-      <th class="pricePerDay" style="text-align: center" >
-        <div class="parent">
-          <div class="left">
-             Price per day
-          </div>
-        </div>
-      </th>
-      <th class="roomStatus" style="text-align: center" >
-        <div class="parent">
-          <div class="left">
-            Room status
-          </div>
-        </div>
-      </th>
-      <th class="type" style="text-align: center" >
-        <div class="parent">
-          <div class="left">
-            Type
-          </div>
-        </div>
-      </th>
-      <th class="data" @click="sortByField('updated')" style="text-align: center" >
-        <div class="parent">
-          <div class="left">
-            Update
-          </div>
-        </div>
-      </th>
-      <th v-if="!isRoleAdmin()" class="data" @click="sortByField('updated')" style="text-align: center" >
-          <div class="left">
-            Booking
-          </div>
-      </th>
-      <th v-else class="data" @click="sortByField('updated')" style="text-align: center" >
+    <th id="checkbox" v-if="isRoleAdmin()" class="checkbox"><input type="checkbox" id="titleCheckbox" @change="checkAll" style="text-align: center" ></th>
+    <th id="id" v-if="isRoleAdmin()" class="id" @click="sortByField('id')" style="text-align: center" >
+      <div class="parent">
         <div class="left">
-          Delete
+          Id
         </div>
-      </th>
-      <th class="data" @click="sortByField('updated')" style="text-align: center" >
+        <div class="right">
+        </div>
+      </div>
+    </th>
+    <th id="firstName" class="firstName" @click="sortByField('name')" style="text-align: center" >
+      <div class="parent">
         <div class="left">
-          More info
+          First Name
         </div>
-      </th>
+      </div>
+    </th>
+    <th id="lastName" class="lastName" style="text-align: center" >
+      <div class="parent">
+        <div class="left">
+          Last Name
+        </div>
+      </div>
+    </th>
+    <th id="email" class="email" style="text-align: center" >
+      <div class="parent">
+        <div class="left">
+          Email
+        </div>
+      </div>
+    </th>
+    <th id="phoneNumber" class="phoneNumber" style="text-align: center" >
+      <div class="parent">
+        <div class="left">
+          Phone
+        </div>
+      </div>
+    </th>
+    <th id="role" class="role" @click="sortByField('updated')" style="text-align: center" >
+      <div class="parent">
+        <div class="left">
+          Role
+        </div>
+      </div>
+    </th>
+    <th id="dateOfRegistration" class="dateOfRegistration" @click="sortByField('updated')" style="text-align: center" >
+      <div class="left">
+        Date Of Registration
+      </div>
+    </th>
+    <th id="button1" class="button" @click="sortByField('updated')" style="text-align: center" >
+      <div class="left">
+        Deactivate
+      </div>
+    </th>
+    <th id="button2" class="button" @click="sortByField('updated')" style="text-align: center" >
+      <div class="left">
+        Letter
+      </div>
+    </th>
     </thead>
     <tbody id="tbody">
-    <SoloItem ref="itemList"
+    <SoloUser ref="userList"
               @addRaw="changeDiv"
-              v-for="item of items" :key="item.id"
-              v-bind:item="item"
+              v-for="user of users" :key="user.id"
+              v-bind:user="user"
     />
     </tbody>
   </table>
 </template>
-<script>
-import SoloItem from "./SoloItem";
-import App from "../../App";
-import $ from "jquery";
-import SideBarMenu from "../navigation/SideBarMenu";
-import Link from "../navigation/Link";
 
+<script>
+import SoloUser from "./SoloUser";
+import App from "../../App";
+import Link from "../navigation/Link";
+import SideBarMenu from "../navigation/SideBarMenu";
+import $ from "jquery";
 export default {
+  name: "UserList",
   props: {
-    items: {
+    users: {
       type: Array
     },
   },
   components: {
-    SoloItem: SoloItem
-  },
-  mounted(){
-    let field = window.localStorage.getItem(this.$route.path + " field");
-    let order = window.localStorage.getItem(this.$route.path + " orderBy")==='true';
-    if(field!==null && order!==null) {
-      this.field = field
-      this.orderBy = order;
-    }
-  },
-  data() {
-    return {
-      orderBy: false,
-      field: '',
-      clicked: false,
-      checkedItemsList: []
-    }
-  },
-  created: function () {
-    this.$parent.$on('removeCheckboxes', this.removeCheckboxes);
+    SoloUser: SoloUser
   },
 
   methods: {
@@ -161,11 +143,11 @@ export default {
     },
 
     changeDiv() {
-      var itemList = this.$refs.itemList;
+      var userList = this.$refs.userList;
       this.checkedItemsList = [];
-      itemList.forEach(element => {
+      userList.forEach(element => {
         if (element.$refs.checkbox.checked) {
-          this.checkedItemsList.push(element.item.id);
+          this.checkedItemsList.push(element.user.id);
         }
       });
       if (this.checkedItemsList.length > 0) {
@@ -179,31 +161,31 @@ export default {
       }
     },
     checkAll() {
-      var itemList = this.$refs.itemList;
+      var userList = this.$refs.userList;
       this.checkedItemsList = [];
       if ($("#titleCheckbox").prop('checked')) {
-        itemList.forEach(element => {
-          if(element.item.status!=="DELETED") {
+        userList.forEach(element => {
+          if(element.user.status!=="DELETED") {
             element.$refs.checkbox.checked = true;
-            this.checkedItemsList.push(element.item.id);
+            this.checkedItemsList.push(element.user.id);
           }
         });
         this.$emit('setPanelVisible', this.checkedItemsList)
       } else {
-        itemList.forEach(element => {
+        userList.forEach(element => {
           element.$refs.checkbox.checked = false;
         });
         this.$emit('setHeaderVisible')
       }
     },
     removeCheckboxes() {
-      var itemList = this.$refs.itemList;
-      itemList.forEach(element => {
+      var userList = this.$refs.userList;
+      userList.forEach(element => {
         element.$refs.checkbox.checked = false;
       });
       this.$emit('setHeaderVisible')
     }
-  },
+  }
 }
 </script>
 

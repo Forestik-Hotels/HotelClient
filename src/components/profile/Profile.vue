@@ -96,7 +96,7 @@ export default {
     saveUserInfo() {
       const headers = Link.methods.getHeaders();
       return axios.patch(Link.methods.getUserDataUpdate(), this.user, {headers}).then(() => {
-        this.createToast("User data changed")
+        this.createToast("User.vue data changed")
       });
     },
 

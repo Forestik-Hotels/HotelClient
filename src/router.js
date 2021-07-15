@@ -45,6 +45,15 @@ export default new Router({
             component: () => import('./components/profile/Profile.vue')
         },
         {
+            path: '/userList',
+            component: () => import('./components/admin/ArticleByUserId.vue')
+        },
+        {
+            path: '/user/:id',
+            component: () => import('./components/admin/User.vue'),
+            props: true
+        },
+        {
             path: '/addRoom',
             component: () => import('./components/room/AddRoom.vue'),
             props: true

@@ -29,7 +29,7 @@ export default {
       const userId = this.$route.query.user_id;
       axios.get(Link.methods.getVerificationUrl()+`?token=${token}&user_id=${userId}`, this.request).then((res) => {
         if(res.data===true){
-          this.createToast("User verified", "success")
+          this.createToast("User.vue verified", "success")
         }
         else
           this.createToast("Token expired", "error")

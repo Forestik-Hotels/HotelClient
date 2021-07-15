@@ -1,32 +1,30 @@
 <template>
   <tr>
-    <td style="text-align: center" v-if="isRoleAdmin()" class="checkboxTd">
+    <td style="text-align: center" class="checkboxTd">
       <input id="checkbox" class="checkbox" type="checkbox" @change="countEvent()" ref="checkbox"
-             :disabled="item.status === 'DELETED'">
+             :disabled="user.status === 'DELETED'">
     </td>
-    <td style="text-align: center" v-if="isRoleAdmin()" class="idTd" @click="goToSingleArticle(item.id)">{{ item.id }}</td>
-    <td style="text-align: center" class="name" @click="goToSingleArticle(item.id)">{{ item.name }}</td>
-    <td style="text-align: center" class="pricePerDay" @click="goToSingleArticle(item.id)" colspan="">{{ item.pricePerDay }}</td>
-    <td style="text-align: center" class="roomStatus" @click="goToSingleArticle(item.id)" colspan="">{{ item.roomStatus }}</td>
-    <td style="text-align: center" class="type" @click="goToSingleArticle(item.id)" colspan="">{{ item.type }}</td>
-
-    <td style="text-align: center" class="dataTd" @dblclick="goToSingleArticle(item.id)">{{ moment(item.updated).format('MM/DD/YYYY hh:mm') }}</td>
-    <td style="text-align: center" v-if="isRoleAdmin()" class="type">
-      <button @click="goToBooking(item.id)" class="btn waves-effect waves-light" type="button" id="delete">
-        Delete
-        <em class="fa fa-bookmark right"></em>
-      </button>
-    </td>
-    <td style="text-align: center" v-if="!isRoleAdmin()" class="type">
-      <button @click="goToBooking(item.id)" class="btn waves-effect waves-light" type="button" id="booking">
-        Booking
-        <em class="fa fa-bookmark right"></em>
+    <td style="text-align: center" class="idTd" @click="goToSingleArticle(user.id)">{{ user.id }}</td>
+    <td style="text-align: center" class="firstName" @click="goToSingleArticle(user.id)">{{ user.firstName }}</td>
+    <td style="text-align: center" class="lastName" @click="goToSingleArticle(user.id)" colspan="">{{
+        user.lastName
+      }}</td>
+    <td style="text-align: center" class="email" @click="goToSingleArticle(user.id)" colspan="">{{
+        user.email
+      }}</td>
+    <td style="text-align: center" class="phoneNumber"  @click="goToSingleArticle(user.id)">{{ user.phoneNumber }}</td>
+    <td style="text-align: center" class="role" @click="goToSingleArticle(user.id)" colspan="">{{ user.role }}</td>
+    <td style="text-align: center" class="dateOfRegistration" @click="goToSingleArticle(user.id)" colspan="">{{ moment(user.dateOfRegistration).format('MM/DD/YYYY hh:mm')}}</td>
+    <td style="text-align: center" class="type">
+      <button @click="deactivate(user.id)" class="btn light" type="button" id="deactivate">
+        Deactivate
+        <em class="fas fa-user-slash"></em>
       </button>
     </td>
     <td style="text-align: center" class="type">
-      <button @click="goToRoom(item.id)" class="btn light" type="button" id="room">
-        Room
-        <em class="fa fa-hotel right"></em>
+      <button @click="goToUser(user.id)" class="btn light" type="button" id="user">
+        Write
+        <em class="fa fa-file-text"></em>
       </button>
     </td>
   </tr>
@@ -37,9 +35,10 @@
 import moment from 'moment';
 import SideBarMenu from "../navigation/SideBarMenu";
 import Link from "../navigation/Link";
+import axios from "axios";
 export default {
   props: {
-    item: {
+    user: {
       type: Object,
       required: true
     },
@@ -86,33 +85,25 @@ export default {
       return SideBarMenu.methods.isRoleAdmin();
     },
     goToSingleArticle(id) {
-      if(this.item.status !== 'DELETED')
+      if(this.user.status !== 'DELETED')
         this.$router.push({name: 'articleById', params: { "id": id.toString()} });
     },
     moment,
 
-    ifBooking() {
-      !this.isRoleAdmin()
-      return (this.item.roomStatus!=='BOOKING' && this.item.roomStatus!=='RESERVED' && this.item.roomStatus!=='INHABITED') || this.isRoleAdmin()
-    },
-
-    isRoleAdmin() {
-      return Link.methods.parseJwt(Link.methods.getToken()).authorities[0] === 'ROLE_ADMIN';
+    deactivate: function(id){
+      const headers = Link.methods.getHeaders();
+      axios.post(Link.methods.getDeactivateUser(id), null, {headers})
+          .then();
     },
 
     countEvent() {
       this.$emit('addRaw')
     },
 
-    goToBooking: function (id) {
-      window.scrollTo(0,0);
-      this.$router.push('/booking/' + id);
-    },
-
-    goToRoom: function (id) {
+    goToUser: function (id) {
       console.log(id);
       window.scrollTo(0,0);
-      this.$router.push('/room/' + id + "?id=" + this.$route.params.id);
+      this.$router.push('/user/' + id);
     }
   }
 }
@@ -139,7 +130,7 @@ export default {
   }
 }
 
-#booking, #room, #delete {
+#user, #deactivate {
   width: 100%;
   box-sizing: revert;
   height: 43px;

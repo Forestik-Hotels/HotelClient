@@ -25,7 +25,7 @@
       <p></p>
       <div id="controller">
         <button v-on:click="createHotel" type="button" id="create" class="btn btn-primary btn-lg">
-          Create<i class="fa fa-pencil right"></i>
+          Create<i class="fa fa-pencil-alt right"></i>
         </button>
       </div>
     </form>
@@ -43,11 +43,9 @@ import Link from "../navigation/Link";
 export default {
 
   data() {
-    let data = {
+    return {
       hotel: {}
     };
-
-    return data;
   },
 
   methods: {
